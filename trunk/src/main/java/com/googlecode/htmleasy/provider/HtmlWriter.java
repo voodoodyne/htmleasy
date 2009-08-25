@@ -122,7 +122,7 @@ public class HtmlWriter implements MessageBodyWriter
 				{
 					Class forClass = ((ViewWith)anno).ifClass();
 					// Note that View.class is a sentinel value indicating "all classes"
-					if (ViewWith.class.equals(forClass) || type.isAssignableFrom(forClass))
+					if (ViewWith.class.equals(forClass) || forClass.isAssignableFrom(type))
 					{
 						return (ViewWith)anno;
 					}
