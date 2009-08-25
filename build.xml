@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<project name="htmleasy" default="jar" basedir=".">
+
+	<property name="name" value="${ant.project.name}" />
+	
+	<property file="build.properties" />
+
+	<property name="build.dir" location="build" />
+	
+	<property name="build.debug" value="on" />
+	<property name="build.deprecation" value="on" />
+
+	<property name="build.classes.dir" location="${build.dir}/classes" />
+	
+	<property name="build.jar.file" location="${build.dir}/${name}.jar" />
+
+	<property name="javasrc.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+
+	<path id="master.classpath">
+		<pathelement path="${java.class.path}" />
+		
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+	
+ 	<target name="classes">
+		<mkdir dir="${build.classes.dir}" />
+ 		
+		<javac srcdir="${javasrc.dir}"
+				destdir="${build.classes.dir}"
+				debug="${build.debug}"
+				deprecation="${build.deprecation}">
+			<classpath refid="master.classpath" />
+		</javac>
+	</target>
+
+	<target name="jar" depends="classes">
+		<jar destfile="${build.jar.file}">
+			<classes dir="${build.classes.dir}" />
+		</jar>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build.dir}" />
+	</target>
+</project>
+

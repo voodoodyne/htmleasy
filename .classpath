@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/resteasy-jaxrs-1.1.GA.jar" sourcepath="/resteasy-jaxrs/src/main/java"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="lib/jaxrs-api-1.1.GA.jar" sourcepath="/jaxrs-api/src/main/java"/>
+	<classpathentry kind="lib" path="lib/javaee-16.jar"/>
+	<classpathentry kind="output" path="build/eclipse/"/>
+</classpath>
