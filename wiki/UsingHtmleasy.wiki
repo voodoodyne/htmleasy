@@ -1,0 +1,220 @@
+#summary How to use Htmleasy
+
+= Installation =
+
+Just include the htmleasy jar in your web application.  Resteasy will find the providers automatically.
+
+If you would like to serve HTML pages from the root context (ie /myresource as opposed to /rest/myresource), use the optional included ResteasyFilter.
+
+= Patterns =
+
+There are several ways to use Htmleasy.  These examples will start simple and get progressively more complex.  These examples skip getters and setters for readability; you can eliminate getters and setters and much other boilerplate from your code permanently with [http://www.projectlombok.org/ Project Lombok].
+
+== Trivial View ==
+
+Sometimes all you want to do is render some html.
+
+{{{
+@Path("/about")
+public class About
+{
+	@GET @Path("/privacy")
+	public View privacy()
+	{
+		return new View("/privacy_policy.jsp");
+	}
+}
+}}}
+
+Any method that returns a View object will be rendered as-is.  You can keep the clean URLs.
+
+== Basic Page Data ==
+
+Here you have a data object that should be rendered as HTML.
+	
+{{{
+@ViewWith("/car.jsp")
+public class Car
+{
+	Long id;
+	String color;
+	int numberOfDoors;
+}
+}}}
+
+{{{
+@Path("/car")
+public class CarResource
+{
+    @GET @Path("/{id}")
+    public Car getCar(@PathParam("id") Long id)
+    {
+        return // ...load car from database
+    }
+}
+}}}
+
+{{{
+// car.jsp
+<html><body>
+	<p>The car is ${model.color} and has ${model.numberOfDoors} doors.</p>
+</body></html>
+}}}
+
+Normally JAX-RS can produce JSON, XML, or any of several other formats from the getCar() method. Now in addition, the same method will produce HTML if the client (browser) asks for it.
+
+Note that the name of the model in the request context can be changed using the modelName attribute on the @ViewWith annotation.
+
+== View Override ==
+
+The @ViewWith annotation on a data class is just a default.  You can override it on a per-method basis:
+
+{{{
+@Path("/car")
+public class CarResource
+{
+    @GET @Path("/{id}")
+    public Car getCar(@PathParam("id") Long id)
+    {
+        return // ...load car from database
+    }
+    
+    @GET @Path("/{id}/edit")
+    @ViewWith("/car_edit.jsp")
+    public Car editCar(@PathParam("id") Long id)
+    {
+        return this.getCar(id);
+    }
+}
+}}}
+
+== Polymorphism ==
+
+The view for rendering is dynamically chosen based on the object returned:
+
+{{{
+@Path("/vehicle")
+public class VehicleResource
+{
+    @GET @Path("/{id}")
+    @ViewWith(ifClass=Boat.class, value="/boat_special.jsp")
+    public Vehicle getVehicle(@PathParam("id") Long id)
+    {
+        return // ...load from database; could be Car, Boat, Airplane, etc
+    }
+}
+}}}
+
+Note that you can add one or more @ViewWith annotations with an ifClass Attribute. This will override the default (or missing) @ViewWith on objects of a particular class or superclass.  Note that the order of annotations is relevant here.
+
+== Form Handling ==
+
+In modern Web 2.0 applications, traditional form handling is slowly being replaced with smart javascript forms.  Nevertheless, Htmleasy provides several options for managing the page flow of form submission.
+
+These examples assume that:
+ * On success, the client should be redirected to a new location.
+ * On failure, the client should receive the form again with any errors highlighted.
+
+There is no one way to do form handling, but here are some options:
+
+=== Basic Form Handling ===
+
+This is the simplest possible approach to form handling.  It may seem slightly odd at first but quickly becomes natural, especially if you continue to think of these as REST calls.
+
+{{{
+@ViewWith("/car.jsp")
+public class Car
+{
+	@PathParam("id") Long id;
+	@FormParam("color") String color;
+	@FormParam("numberOfDoors") int numberOfDoors;
+	
+	Map<String, String> errors;
+	public void addError(String key, String msg) 
+	{
+		if (errors == null) errors = new HashMap<String, String>();
+		errors.put(key, msg);
+	}
+}
+}}}
+
+{{{
+@Path("/car")
+public class CarResource
+{
+    @GET @Path("/{id}")
+    public Car getCar(@PathParam("id") Long id)
+    {
+        return // ...load car from database
+    }
+    
+    @GET @Path("/{id}/edit")
+    @ViewWith("/car_edit.jsp")
+    public Car editCar(@PathParam("id") Long id)
+    {
+        return this.getCar();
+    }
+    
+    @POST @Path("/{id}")
+    @ViewWith("/car_edit.jsp")
+    public Car saveCar(@Form Car car)
+    {
+    	if (!"black".equals(car.color))
+    		car.addError("color", "You can have any color you want as long as it is black");
+    	
+    	if (car.numberOfDoors > 5)
+    		car.addError("numberOfDoors", "I don't believe you");
+    	
+    	if (car.errors != null)
+    		return car;
+    	else
+    	{
+    		// Save the car data
+    		throw new RedirectException("/car/" + car.id);
+    	}
+    }
+}
+}}}
+
+{{{
+// car_edit.jsp
+<html><body>
+	<form method="post" action="/car/${model.id}">
+		<input type="text" name="color" value="${model.color}"/> ${model.errors.color}
+		<br/>
+		<input type="text" name="numberOfDoors" value="${model.numberOfDoors}"/> ${model.errors.numberOfDoors}
+		<br/>
+		<input type="submit"/>
+	</form>
+</body></html>
+}}}
+
+=== Alternate Form Handling With JSR299 ===
+
+If you are using JSR299 with Resteasy, some alternative approaches are possible.  This is one.  It's not necessarily better... use what you prefer.
+
+{{{
+@Path("/car")
+public class CarSubmitResource
+{
+	@Form @RequestScoped @Named("model") Car car;
+	
+    @POST @Path("/{id}")
+    public View saveCar()
+    {
+    	if (!"black".equals(car.color))
+    		car.addError("color", "You can have any color you want as long as it is black");
+    	
+    	if (car.numberOfDoors > 5)
+    		car.addError("numberOfDoors", "I don't believe you");
+    	
+    	if (car.errors != null)
+    		return new View("/car_edit.jsp");
+    	else
+    	{
+    		// Save the car data
+    		throw new RedirectException("/car/" + car.id);
+    	}
+    }
+}
+}}}
