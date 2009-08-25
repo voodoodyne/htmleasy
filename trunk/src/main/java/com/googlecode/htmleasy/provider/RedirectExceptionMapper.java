@@ -22,7 +22,7 @@ public class RedirectExceptionMapper implements ExceptionMapper<RedirectExceptio
 	/* (non-Javadoc)
 	 * @see javax.ws.rs.ext.ExceptionMapper#toResponse(java.lang.Throwable)
 	 */
-	@Override
+	//@Override
 	public Response toResponse(RedirectException ex)
 	{
 		return Response.seeOther(ex.getPath()).build();

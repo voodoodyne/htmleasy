@@ -38,7 +38,7 @@ public class HtmlWriter implements MessageBodyWriter
 	/* (non-Javadoc)
 	 * @see javax.ws.rs.ext.MessageBodyWriter#getSize(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
 	 */
-	@Override
+	//@Override
 	public long getSize(Object obj, Class type, Type genericType, Annotation[] annotations, MediaType mediaType)
 	{
 		// No chance of figuring this out ahead of time
@@ -48,7 +48,7 @@ public class HtmlWriter implements MessageBodyWriter
 	/* (non-Javadoc)
 	 * @see javax.ws.rs.ext.MessageBodyWriter#isWriteable(java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
 	 */
-	@Override
+	//@Override
 	public boolean isWriteable(Class type, Type genericType, Annotation[] annotations, MediaType mediaType)
 	{
 		if (View.class.isAssignableFrom(type))
@@ -60,7 +60,7 @@ public class HtmlWriter implements MessageBodyWriter
 	/* (non-Javadoc)
 	 * @see javax.ws.rs.ext.MessageBodyWriter#writeTo(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType, javax.ws.rs.core.MultivaluedMap, java.io.OutputStream)
 	 */
-	@Override
+	//@Override
 	public void writeTo(Object obj, Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException
 	{
