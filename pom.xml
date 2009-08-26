@@ -9,6 +9,13 @@
 	<name>htmleasy</name>
 	<url>http://maven.apache.org</url>
 
+	<scm>
+		<connection>scm:svn:http://htmleasy.googlecode.com/svn/</connection>
+		<developerConnection>scm:svn:https://htmleasy.googlecode.com/svn/</developerConnection>
+		<tag>HEAD</tag>
+		<url>http://code.google.com/p/htmleasy/</url>
+	</scm>
+
 	<repositories>
 		<repository>
 			<id>jboss</id>
