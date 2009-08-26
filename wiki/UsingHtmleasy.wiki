@@ -1,14 +1,16 @@
+import javax.swing.text.html.HTML.Attribute;
+
 #summary How to use Htmleasy
 
 = Installation =
 
-Just include the htmleasy jar in your web application.  Resteasy will find the providers automatically.
+Just include the htmleasy jar in your web application.	Resteasy will find the providers automatically.
 
 If you would like to serve HTML pages from the root context (ie /myresource as opposed to /rest/myresource), use the optional included ResteasyFilter.
 
 = Patterns =
 
-There are several ways to use Htmleasy.  These examples will start simple and get progressively more complex.  These examples skip getters and setters for readability; you can eliminate getters and setters and much other boilerplate from your code permanently with [http://www.projectlombok.org/ Project Lombok].
+There are several ways to use Htmleasy.	 These examples will start simple and get progressively more complex.  These examples skip getters and setters for readability; you can eliminate getters and setters and much other boilerplate from your code permanently with [http://www.projectlombok.org/ Project Lombok].
 
 == Trivial View ==
 
@@ -46,11 +48,11 @@ public class Car
 @Path("/car")
 public class CarResource
 {
-    @GET @Path("/{id}")
-    public Car getCar(@PathParam("id") Long id)
-    {
-        return // ...load car from database
-    }
+	@GET @Path("/{id}")
+	public Car getCar(@PathParam("id") Long id)
+	{
+		return // ...load car from database
+	}
 }
 }}}
 
@@ -67,24 +69,24 @@ Note that the name of the model in the request context can be changed using the 
 
 == View Override ==
 
-The @ViewWith annotation on a data class is just a default.  You can override it on a per-method basis:
+The @ViewWith annotation on a data class is just a default.	 You can override it on a per-method basis:
 
 {{{
 @Path("/car")
 public class CarResource
 {
-    @GET @Path("/{id}")
-    public Car getCar(@PathParam("id") Long id)
-    {
-        return // ...load car from database
-    }
-    
-    @GET @Path("/{id}/edit")
-    @ViewWith("/car_edit.jsp")
-    public Car editCar(@PathParam("id") Long id)
-    {
-        return this.getCar(id);
-    }
+	@GET @Path("/{id}")
+	public Car getCar(@PathParam("id") Long id)
+	{
+		return // ...load car from database
+	}
+	
+	@GET @Path("/{id}/edit")
+	@ViewWith("/car_edit.jsp")
+	public Car editCar(@PathParam("id") Long id)
+	{
+		return this.getCar(id);
+	}
 }
 }}}
 
@@ -96,12 +98,12 @@ The view for rendering is dynamically chosen based on the object returned:
 @Path("/vehicle")
 public class VehicleResource
 {
-    @GET @Path("/{id}")
-    @ViewWith(ifClass=Boat.class, value="/boat_special.jsp")
-    public Vehicle getVehicle(@PathParam("id") Long id)
-    {
-        return // ...load from database; could be Car, Boat, Airplane, etc
-    }
+	@GET @Path("/{id}")
+	@ViewWith(ifClass=Boat.class, value="/boat_special.jsp")
+	public Vehicle getVehicle(@PathParam("id") Long id)
+	{
+		return // ...load from database; could be Car, Boat, Airplane, etc
+	}
 }
 }}}
 
@@ -109,7 +111,7 @@ Note that you can add one or more @ViewWith annotations with an ifClass Attribut
 
 == Form Handling ==
 
-In modern Web 2.0 applications, traditional form handling is slowly being replaced with smart javascript forms.  Nevertheless, Htmleasy provides several options for managing the page flow of form submission.
+In modern Web 2.0 applications, traditional form handling is slowly being replaced with smart javascript forms.	 Nevertheless, Htmleasy provides several options for managing the page flow of form submission.
 
 These examples assume that:
  * On success, the client should be redirected to a new location.
@@ -142,37 +144,37 @@ public class Car
 @Path("/car")
 public class CarResource
 {
-    @GET @Path("/{id}")
-    public Car getCar(@PathParam("id") Long id)
-    {
-        return // ...load car from database
-    }
-    
-    @GET @Path("/{id}/edit")
-    @ViewWith("/car_edit.jsp")
-    public Car editCar(@PathParam("id") Long id)
-    {
-        return this.getCar();
-    }
-    
-    @POST @Path("/{id}")
-    @ViewWith("/car_edit.jsp")
-    public Car saveCar(@Form Car car)
-    {
-    	if (!"black".equals(car.color))
-    		car.addError("color", "You can have any color you want as long as it is black");
-    	
-    	if (car.numberOfDoors > 5)
-    		car.addError("numberOfDoors", "I don't believe you");
-    	
-    	if (car.errors != null)
-    		return car;
-    	else
-    	{
-    		// Save the car data
-    		throw new RedirectException("/car/" + car.id);
-    	}
-    }
+	@GET @Path("/{id}")
+	public Car getCar(@PathParam("id") Long id)
+	{
+		return // ...load car from database
+	}
+	
+	@GET @Path("/{id}/edit")
+	@ViewWith("/car_edit.jsp")
+	public Car editCar(@PathParam("id") Long id)
+	{
+		return this.getCar();
+	}
+	
+	@POST @Path("/{id}")
+	@ViewWith("/car_edit.jsp")
+	public Car saveCar(@Form Car car)
+	{
+		if (!"black".equals(car.color))
+			car.addError("color", "You can have any color you want as long as it is black");
+		
+		if (car.numberOfDoors > 5)
+			car.addError("numberOfDoors", "I don't believe you");
+		
+		if (car.errors != null)
+			return car;
+		else
+		{
+			// Save the car data
+			throw new RedirectException("/car/" + car.id);
+		}
+	}
 }
 }}}
 
@@ -191,7 +193,7 @@ public class CarResource
 
 === Alternate Form Handling With JSR299 ===
 
-If you are using JSR299 with Resteasy, some alternative approaches are possible.  This is one.  It's not necessarily better... use what you prefer.
+If you are using JSR299 with Resteasy, some alternative approaches are possible.  This is one.	It's not necessarily better... use what you prefer.
 
 {{{
 @Path("/car")
@@ -199,22 +201,22 @@ public class CarSubmitResource
 {
 	@Form @RequestScoped @Named("model") Car car;
 	
-    @POST @Path("/{id}")
-    public View saveCar()
-    {
-    	if (!"black".equals(car.color))
-    		car.addError("color", "You can have any color you want as long as it is black");
-    	
-    	if (car.numberOfDoors > 5)
-    		car.addError("numberOfDoors", "I don't believe you");
-    	
-    	if (car.errors != null)
-    		return new View("/car_edit.jsp");
-    	else
-    	{
-    		// Save the car data
-    		throw new RedirectException("/car/" + car.id);
-    	}
-    }
+	@POST @Path("/{id}")
+	public View saveCar()
+	{
+		if (!"black".equals(car.color))
+			car.addError("color", "You can have any color you want as long as it is black");
+		
+		if (car.numberOfDoors > 5)
+			car.addError("numberOfDoors", "I don't believe you");
+		
+		if (car.errors != null)
+			return new View("/car_edit.jsp");
+		else
+		{
+			// Save the car data
+			throw new RedirectException("/car/" + car.id);
+		}
+	}
 }
 }}}
