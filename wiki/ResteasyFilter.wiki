@@ -1,4 +1,5 @@
 #summary Using the ResteasyFilter
+#labels Featured
 
 Resteasy is currently implemented as a servlet.  If you want to serve pages without prefixing all your URLs with some annoying gunk, you need to map the servlet to {{{/*}}}.  If you do this, you won't be able to serve the static content or jsp views in your application - the Resteasy servlet consumes all requests and returns 404 for any that it cannot process.
 
