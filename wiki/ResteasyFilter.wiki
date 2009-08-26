@@ -20,7 +20,7 @@ There is some discussion on the resteasy-developer mailing list that may change 
 </filter-mapping>
 }}}
 
-Do *NOT* enable the Resteasy HttpServletDispatcher - the ResteasyFilter will create one internally for you.  Any config parameters passed to the ResteasyFilter are automatically handed to the HttpServletDispatcher.
+Do *NOT* enable the Resteasy HttpServletDispatcher - the ResteasyFilter will create one internally for you.  Any config parameters passed to the ResteasyFilter are automatically handed to the HttpServletDispatcher.  Note that you should still configure the Resteasy bootstrap context-listener.
 
 All other Resteasy configuration (context-params, etc) are processed normally.
 
