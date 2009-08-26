@@ -9,10 +9,10 @@
 	<url>http://maven.apache.org</url>
 
 	<scm>
-		<connection>scm:svn:http://htmleasy.googlecode.com/svn/tags/htmleasy-0.5</connection>
-		<developerConnection>scm:svn:https://htmleasy.googlecode.com/svn/tags/htmleasy-0.5</developerConnection>
+		<connection>scm:svn:http://htmleasy.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://htmleasy.googlecode.com/svn/trunk/</developerConnection>
 		<tag>HEAD</tag>
-		<url>http://code.google.com/p/htmleasy/tags/htmleasy-0.5</url>
+		<url>http://code.google.com/p/htmleasy/source/browse/#svn/trunk</url>
 	</scm>
 
 	<repositories>
