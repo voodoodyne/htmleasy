@@ -4,15 +4,15 @@
 	<groupId>com.googlecode.htmleasy</groupId>
 	<artifactId>htmleasy</artifactId>
 	<packaging>jar</packaging>
-	<version>0.5-SNAPSHOT</version>
+	<version>0.5</version>
 	<name>htmleasy</name>
 	<url>http://maven.apache.org</url>
 
 	<scm>
-		<connection>scm:svn:http://htmleasy.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://htmleasy.googlecode.com/svn/trunk/</developerConnection>
+		<connection>scm:svn:http://htmleasy.googlecode.com/svn/tags/htmleasy-0.5</connection>
+		<developerConnection>scm:svn:https://htmleasy.googlecode.com/svn/tags/htmleasy-0.5</developerConnection>
 		<tag>HEAD</tag>
-		<url>http://code.google.com/p/htmleasy/source/browse/#svn/trunk</url>
+		<url>http://code.google.com/p/htmleasy/source/browse/#svn/tags/htmleasy-0.5</url>
 	</scm>
 
 	<repositories>
