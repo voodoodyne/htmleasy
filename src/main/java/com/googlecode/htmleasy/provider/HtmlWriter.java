@@ -21,6 +21,7 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import com.googlecode.htmleasy.View;
+import com.googlecode.htmleasy.ViewAndModel;
 import com.googlecode.htmleasy.ViewWith;
 
 /**
@@ -64,9 +65,19 @@ public class HtmlWriter implements MessageBodyWriter
 	public void writeTo(Object obj, Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException
 	{
-		if (View.class.isAssignableFrom(type))
+		String path = null;
+		Object model = null;
+		String modelName = null;
+		
+		if (obj instanceof View)
 		{
-			this.forward(((View)obj).getPath(), null, null);
+			path = ((View)obj).getPath();
+			
+			if (obj instanceof ViewAndModel)
+			{
+				model = ((ViewAndModel)obj).getModel();
+				modelName = ((ViewAndModel)obj).getModelName();
+			}
 		}
 		else
 		{
@@ -75,18 +86,22 @@ public class HtmlWriter implements MessageBodyWriter
 			if (viewWith == null)
 				throw new InternalServerErrorException("No " + ViewWith.class.getSimpleName() + " annotation found for object of type " + type.getName());
 			
-			this.forward(viewWith.value(), viewWith.modelName(), obj);
+			path = viewWith.value();
+			model = obj;
+			modelName = viewWith.modelName();
 		}
+		
+		this.forward(path, model, modelName);
 	}
 	
 	/**
 	 * Does the work of a forward.
 	 * 
 	 * @param path is the path to dispatch to
-	 * @param modelName is the name in the request attrs to set the model object, or null for "don't"
 	 * @param model is the object to place at modelName in the request attrs.
+	 * @param modelName is the name in the request attrs to set the model object, or null for "don't"
 	 */
-	protected void forward(String path, String modelName, Object model) throws IOException, WebApplicationException
+	protected void forward(String path, Object model, String modelName) throws IOException, WebApplicationException
 	{
 		HttpServletRequest request = ResteasyProviderFactory.getContextData(HttpServletRequest.class);
 		
