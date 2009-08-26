@@ -1,0 +1,32 @@
+#summary Using the ResteasyFilter
+
+Resteasy is currently implemented as a servlet.  If you want to serve pages without prefixing all your URLs with some annoying gunk, you need to map the servlet to /*.  If you do this, you won't be able to serve the static content or jsp views in your application - the Resteasy servlet consumes all requests and returns 404 for any that it cannot process.
+
+There is some discussion on the resteasy-developer mailing list that may change this by converting Resteasy to a filter.  Until that materializes, we provide you with a ResteasyFilter that does more-or-less the same thing.  Put this in your web.xml:
+
+{{{
+	<filter>
+		<filter-name>ResteasyFilter</filter-name>
+		<filter-class>com.googlecode.htmleasy.ResteasyFilter</filter-class>
+ 	</filter>
+	
+	<filter-mapping>
+		<filter-name>ResteasyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+}}}
+
+Do *NOT* enable the Resteasy HttpServletDispatcher - the ResteasyFilter will create one internally for you.  Any config parameters passed to the ResteasyFilter are automatically handed to the HttpServletDispatcher.
+
+All other Resteasy configuration (context-params, etc) are processed normally.
+
+The filter works the following way:
+
+ # When a request arrives, attempt to dispatch to the Resteasy servlet.
+ # If the Resteasy servlet responds with anything but 404, we're done.
+ # If the Resteasy servlet response with 404, continue processing down the filter chain.
+
+Note that the ResteasyFilter *MUST* be the last filter specified; the filter chain will stop processing when the request is processed successfully by the Resteasy servlet.
