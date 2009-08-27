@@ -27,11 +27,49 @@ public class About
 }
 }}}
 
-Any method that returns a View object will be rendered as-is.  You can keep the clean URLs.
+== View With Model ==
 
-== Basic Page Data ==
+Static html isn't very interesting, even if you do get clean URLs with Resteasy.  You can add a model to a view for rendering:
 
-Here you have a data object that should be rendered as HTML.
+{{{
+@Path("/time")
+public class About
+{
+	@GET @Path("/now")
+	public View privacy()
+	{
+
+		return new View("/calendar.jsp", new Date());
+	}
+}
+}}}
+
+The date object will be placed in the request attributes with the key name {{{model}}}.  You can customize the name in the View constructor, if you choose.
+
+== Custom Viewable ==
+
+You can return an object that implements the Viewable interface to render anything you want:
+
+{{{
+@Path("/hello")
+public class Greeting
+{
+	@GET
+	public Viewable world()
+	{
+		return new Viewable() {
+			public void render(HttpServletRequest request, HttpServletResponse response)
+			{
+				response.getWriter().println("Hello, World");
+			}
+		};
+	}
+}
+}}}
+
+== Annotation-Based Views ==
+
+You can annotate arbitrary data objects that should be rendered as HTML.
 	
 {{{
 @ViewWith("/car.jsp")
@@ -48,6 +86,8 @@ public class Car
 public class CarResource
 {
 	@GET @Path("/{id}")
+	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Car getCar(@PathParam("id") Long id)
 	{
 		return // ...load car from database
@@ -57,9 +97,7 @@ public class CarResource
 
 {{{
 // car.jsp
-<html><body>
-	<p>The car is ${model.color} and has ${model.numberOfDoors} doors.</p>
-</body></html>
+<p>The car is ${model.color} and has ${model.numberOfDoors} doors.</p>
 }}}
 
 Normally JAX-RS can produce JSON, XML, or any of several other formats from the getCar() method. Now in addition, the same method will produce HTML if the client (browser) asks for it.
@@ -179,15 +217,13 @@ public class CarResource
 
 {{{
 // car_edit.jsp
-<html><body>
-	<form method="post" action="/car/${model.id}">
-		<input type="text" name="color" value="${model.color}"/> ${model.errors.color}
-		<br/>
-		<input type="text" name="numberOfDoors" value="${model.numberOfDoors}"/> ${model.errors.numberOfDoors}
-		<br/>
-		<input type="submit"/>
-	</form>
-</body></html>
+<form method="post" action="/car/${model.id}">
+	<input type="text" name="color" value="${model.color}"/> ${model.errors.color}
+	<br/>
+	<input type="text" name="numberOfDoors" value="${model.numberOfDoors}"/> ${model.errors.numberOfDoors}
+	<br/>
+	<input type="submit"/>
+</form>
 }}}
 
 === Alternate Form Handling With JSR299 ===
