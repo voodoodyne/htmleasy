@@ -30,5 +30,5 @@ public @interface ViewWith
 	Class ifClass() default ViewWith.class;
 	
 	/** The name of the model in the request attributes */
-	String modelName() default "model";
+	String modelName() default View.DEFAULT_MODEL_NAME;
 }

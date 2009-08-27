@@ -6,7 +6,6 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,8 +20,8 @@ import org.jboss.resteasy.spi.InternalServerErrorException;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import com.googlecode.htmleasy.View;
-import com.googlecode.htmleasy.ViewAndModel;
 import com.googlecode.htmleasy.ViewWith;
+import com.googlecode.htmleasy.Viewable;
 
 /**
  * 
@@ -52,7 +51,7 @@ public class HtmlWriter implements MessageBodyWriter
 	//@Override
 	public boolean isWriteable(Class type, Type genericType, Annotation[] annotations, MediaType mediaType)
 	{
-		if (View.class.isAssignableFrom(type))
+		if (Viewable.class.isAssignableFrom(type))
 			return true;
 		else
 			return this.getViewWith(type, annotations) != null;
@@ -65,19 +64,11 @@ public class HtmlWriter implements MessageBodyWriter
 	public void writeTo(Object obj, Class type, Type genericType, Annotation[] annotations, MediaType mediaType,
 			MultivaluedMap httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException
 	{
-		String path = null;
-		Object model = null;
-		String modelName = null;
+		Viewable viewingPleasure;
 		
-		if (obj instanceof View)
+		if (obj instanceof Viewable)
 		{
-			path = ((View)obj).getPath();
-			
-			if (obj instanceof ViewAndModel)
-			{
-				model = ((ViewAndModel)obj).getModel();
-				modelName = ((ViewAndModel)obj).getModelName();
-			}
+			viewingPleasure = (Viewable)obj;
 		}
 		else
 		{
@@ -86,44 +77,22 @@ public class HtmlWriter implements MessageBodyWriter
 			if (viewWith == null)
 				throw new InternalServerErrorException("No " + ViewWith.class.getSimpleName() + " annotation found for object of type " + type.getName());
 			
-			path = viewWith.value();
-			model = obj;
-			modelName = viewWith.modelName();
+			viewingPleasure = new View(viewWith.value(), obj, viewWith.modelName());
 		}
 		
-		this.forward(path, model, modelName);
-	}
-	
-	/**
-	 * Does the work of a forward.
-	 * 
-	 * @param path is the path to dispatch to
-	 * @param model is the object to place at modelName in the request attrs.
-	 * @param modelName is the name in the request attrs to set the model object, or null for "don't"
-	 */
-	protected void forward(String path, Object model, String modelName) throws IOException, WebApplicationException
-	{
 		HttpServletRequest request = ResteasyProviderFactory.getContextData(HttpServletRequest.class);
-		
-		RequestDispatcher disp = request.getRequestDispatcher(path);
-		if (disp == null)
-			throw new InternalServerErrorException("No dispatcher found for path '" + path + "'");
-		
 		HttpServletResponse response = ResteasyProviderFactory.getContextData(HttpServletResponse.class);
-
-		if (modelName != null)
-			request.setAttribute(modelName, model);
 		
 		try
 		{
-			disp.forward(request, response);
+			viewingPleasure.render(request, response);
 		}
 		catch (ServletException ex)
 		{
 			throw new WebApplicationException(ex);
 		}
 	}
-
+	
 	/** 
 	 * @return the relevant view annotation, or null if no view can be determined
 	 */
