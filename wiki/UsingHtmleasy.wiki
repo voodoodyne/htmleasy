@@ -36,7 +36,7 @@ Static html isn't very interesting, even if you do get clean URLs with Resteasy.
 public class About
 {
 	@GET @Path("/now")
-	public View privacy()
+	public View whatTimeIsIt()
 	{
 		return new View("/calendar.jsp", new Date());
 	}
