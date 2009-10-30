@@ -34,6 +34,8 @@ import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.googlecode.htmleasy.util.LoggingHttpServletResponseWrapper;
+
 /**
  * <p>
  * This filter allows Resteasy resources to share the URL space with
@@ -98,7 +100,6 @@ import org.slf4j.LoggerFactory;
 public class ResteasyFilter implements Filter
 {
 	/** */
-	@SuppressWarnings("unused")
 	private final static Logger log = LoggerFactory.getLogger(ResteasyFilter.class);
 	
 	/** Good for shunting output to the bitbucket */
@@ -106,6 +107,37 @@ public class ResteasyFilter implements Filter
 		@Override public void write(int b) throws IOException {}
 		@Override public void write(byte[] b, int off, int len) throws IOException {}
 	};
+	
+	class LoggingServletOutputStream extends ServletOutputStream
+	{
+		ServletOutputStream base;
+		public LoggingServletOutputStream(ServletOutputStream wrap)
+		{
+			this.base = wrap;
+		}
+		
+		@Override
+		public void write(byte[] b, int off, int len) throws IOException
+		{
+			log.debug("writing: " + new String(b, off, len));
+			this.base.write(b, off, len);
+		}
+
+		@Override
+		public void write(byte[] b) throws IOException
+		{
+			log.debug("writing: " + new String(b));
+			this.base.write(b);
+		}
+
+		@Override
+		public void write(int b) throws IOException
+		{
+			log.debug("writing: " + (char)b);
+			this.base.write(b);
+		}
+		
+	}
 	
 	/**
 	 * <p>An {@link HttpServletResponseWrapper} that traps HTTP errors by
@@ -133,7 +165,10 @@ public class ResteasyFilter implements Filter
 		public void sendError(int errorCode, String errorMessage) throws IOException
 		{
 			if (errorCode == HttpServletResponse.SC_NOT_FOUND)
+			{
+				log.debug("Got 404, going to shunted mode");
 				this.shunted = true;
+			}
 			else
 				super.sendError(errorCode, errorMessage);
 		}
@@ -143,7 +178,10 @@ public class ResteasyFilter implements Filter
 		public void sendError(int errorCode) throws IOException
 		{
 			if (errorCode == HttpServletResponse.SC_NOT_FOUND)
+			{
+				log.debug("Got 404, going to shunted mode");
 				this.shunted = true;
+			}
 			else
 				super.sendError(errorCode);
 		}
@@ -153,16 +191,20 @@ public class ResteasyFilter implements Filter
 		public PrintWriter getWriter() throws IOException
 		{
 			return new PrintWriter(this.getOutputStream());
+			//return super.getWriter();
 		}
 
 		/** */
 		@Override
 		public ServletOutputStream getOutputStream() throws IOException
 		{
+			if (log.isDebugEnabled())
+				log.debug("Getting a " + ((this.shunted)?"NOOP":"real")  + " OutputStream");
+			
 			if (this.shunted)
 				return NOOP_OUTPUTSTREAM;
 			else
-				return super.getOutputStream();
+				return new LoggingServletOutputStream(super.getOutputStream());
 		}
 
 		/**
@@ -233,11 +275,14 @@ public class ResteasyFilter implements Filter
 	{
 		ShuntingResponseWrapper wrapper = new ShuntingResponseWrapper((HttpServletResponse) response);
 
-		this.resteasyServlet.service(request, wrapper);
+		log.debug("############### CHECKING WITH RESTEASY");
+		this.resteasyServlet.service(request, new LoggingHttpServletResponseWrapper(wrapper));
 
 		// If we were shunted, continue with the filter, otherwise we're done
 		if (wrapper.isShunted())
 		{
+			log.debug("############### GOING TO CONTAINER");
+			response.reset();
 			chain.doFilter(request, response);
 		}
 	}
