@@ -1,22 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.0/httpclient-4.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/javassist/javassist/3.6.0.GA/javassist-3.6.0.GA.jar"/>
-  <classpathentry kind="src" path="/jaxrs-api"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/javaee/jboss-javaee/5.0.1.GA/jboss-javaee-5.0.1.GA.jar"/>
-  <classpathentry kind="var" path="M2_REPO/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.5.8/jcl-over-slf4j-1.5.8.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/resteasy/resteasy-jaxrs/1.2.1.GA/resteasy-jaxrs-1.2.1.GA.jar" sourcepath="M2_REPO/org/jboss/resteasy/resteasy-jaxrs/1.2.1.GA/resteasy-jaxrs-1.2.1.GA-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/scannotation/scannotation/1.0.2/scannotation-1.0.2.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-simple/1.5.8/slf4j-simple-1.5.8.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1/activation-1.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpclient/4.0/httpclient-4.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javassist/javassist/3.6.0.GA/javassist-3.6.0.GA.jar"/>
+	<classpathentry kind="src" path="/jaxrs-api"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/javaee/jboss-javaee/5.0.1.GA/jboss-javaee-5.0.1.GA.jar"/>
+	<classpathentry kind="var" path="M2_REPO/net/jcip/jcip-annotations/1.0/jcip-annotations-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/jcl-over-slf4j/1.5.8/jcl-over-slf4j-1.5.8.jar"/>
+	<classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/resteasy/resteasy-jaxrs/1.2.1.GA/resteasy-jaxrs-1.2.1.GA.jar" sourcepath="M2_REPO/org/jboss/resteasy/resteasy-jaxrs/1.2.1.GA/resteasy-jaxrs-1.2.1.GA-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/scannotation/scannotation/1.0.2/scannotation-1.0.2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-api/1.5.8/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-simple/1.5.8/slf4j-simple-1.5.8.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/resteasy/jaxrs-api/1.2.1.GA/jaxrs-api-1.2.1.GA.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
