@@ -9,7 +9,6 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
@@ -24,16 +23,17 @@ import com.googlecode.htmleasy.ViewWith;
 import com.googlecode.htmleasy.Viewable;
 
 /**
+ * JAX-RS provider for viewable objects.  Handles all media types so that it
+ * can look for relevant @ViewWith annotations.
  * 
  * @author Jeff Schnitzer <jeff@infohazard.org>
  */
 @SuppressWarnings("unchecked")
 @Provider
-@Produces("text/html")
-public class HtmlWriter implements MessageBodyWriter<Object>
+public class ViewWriter implements MessageBodyWriter<Object>
 {
 	@SuppressWarnings("unused")
-	private static final Logger log = Logger.getLogger(HtmlWriter.class.getName());
+	private static final Logger log = Logger.getLogger(ViewWriter.class.getName());
 
 	/* (non-Javadoc)
 	 * @see javax.ws.rs.ext.MessageBodyWriter#getSize(java.lang.Object, java.lang.Class, java.lang.reflect.Type, java.lang.annotation.Annotation[], javax.ws.rs.core.MediaType)
