@@ -15,7 +15,6 @@
 package com.googlecode.htmleasy;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.Filter;
@@ -40,8 +39,7 @@ import com.googlecode.htmleasy.util.LoggingHttpServletResponseWrapper;
  * <p>
  * This filter allows Resteasy resources to share the URL space with
  * normal (jpg, jsp, etc) resources. That is, Resteasy can serve /foo and the
- * container can serve /my.jpg.  It also "fixes" containers that take
- * the servlet spec too literally.</p>
+ * container can serve /my.jpg.</p>
  * 
  * <p>The servlet spec says that you can only call ServletResponse.getWriter()
  * *or* ServletResponse.getOutputStream() within a request, and the second
@@ -49,9 +47,13 @@ import com.googlecode.htmleasy.util.LoggingHttpServletResponseWrapper;
  * (forwards and includes) nearly impossible.  Resteasy calls getOutputStream()
  * internally; if during the context of a Resteasy call you forward to a JSP
  * template, the JSP engine is likely to call getWriter().  You can do this on
- * Tomcat (or maybe Tomcat's JSP engine calls getOutputStream()) but it utterly
- * fails on Jetty (as of 2009-10-28).  The solution:  the wrapper for this
- * filter transmografies getWriter() into getOutputStream().
+ * Jetty 7 and Tomcat (or maybe Tomcat's JSP engine calls getOutputStream()) but it
+ * fails on Jetty 6.</p>
+ * 
+ * <p>At one point this code was set up to mock the writer as an output stream for
+ * Jetty 6, but it started causing problems in Jetty 7.  The code currently relies
+ * on the intelligent behavior of later versions, which means Jetty 6 (and thus
+ * Google App Engine) users are screwed.</p>
  * 
  * <p>Note that this filter may become obsolete if and when Resteasy is
  * converted from a Servlet to a Filter itself; until then this will suffice.</p>
@@ -186,14 +188,6 @@ public class ResteasyFilter implements Filter
 				super.sendError(errorCode);
 		}
 
-		/** This actually translates the call to getOutputStream() */
-		@Override
-		public PrintWriter getWriter() throws IOException
-		{
-			return new PrintWriter(this.getOutputStream());
-			//return super.getWriter();
-		}
-
 		/** */
 		@Override
 		public ServletOutputStream getOutputStream() throws IOException
@@ -203,12 +197,13 @@ public class ResteasyFilter implements Filter
 			
 			if (this.shunted)
 				return NOOP_OUTPUTSTREAM;
-			else
+			else if (log.isDebugEnabled())
 				return new LoggingServletOutputStream(super.getOutputStream());
+			else
+				return super.getOutputStream();
 		}
 
 		/**
-		 * 
 		 */
 		public boolean isShunted() { return this.shunted; }
 	}
