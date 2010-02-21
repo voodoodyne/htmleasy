@@ -1,7 +1,9 @@
 <projectDescription>
   <name>htmleasy</name>
   <comment/>
-  <projects/>
+  <projects>
+    <project>jaxrs-api</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
