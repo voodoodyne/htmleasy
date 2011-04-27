@@ -26,8 +26,7 @@ public @interface ViewWith
 	 * returned class of the model.  Note that View.class is a sentinel value for "all",
 	 * needed because Java won't allow null as a default.
 	 */
-	@SuppressWarnings("unchecked")
-	Class ifClass() default ViewWith.class;
+	Class<?> ifClass() default View.class;
 	
 	/** The name of the model in the request attributes */
 	String modelName() default View.DEFAULT_MODEL_NAME;
