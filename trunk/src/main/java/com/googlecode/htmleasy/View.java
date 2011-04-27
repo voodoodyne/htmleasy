@@ -63,6 +63,8 @@ public class View implements Viewable
 	public void render(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException, WebApplicationException
 	{
+		request.setAttribute(View.class.getName(), this);
+
 		if (this.modelName != null)
 			request.setAttribute(this.modelName, this.model);
 		

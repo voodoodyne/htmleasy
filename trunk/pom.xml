@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>0.7-SNAPSHOT</version>
 	<name>htmleasy</name>
-	<url>http://maven.apache.org</url>
+	<url>http://code.google.com/p/htmleasy</url>
 
 	<scm>
 		<connection>scm:svn:http://htmleasy.googlecode.com/svn/trunk</connection>
