@@ -7,6 +7,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 
 import com.googlecode.htmleasy.View;
+import com.googlecode.htmleasy.ViewSet;
 import com.googlecode.htmleasy.ViewWith;
 import com.googlecode.htmleasy.Viewable;
 
@@ -64,7 +65,7 @@ public class ViewResolver
 		}
 		return viewingPleasure;
 	}
-	
+
 	/**
 	 * @return the relevant view annotation, or null if no view can be determined
 	 */
@@ -74,29 +75,44 @@ public class ViewResolver
 		{
 			for (Annotation anno : methodAnnotations)
 			{
+				// If we have a view set, loop through to see if we can find a
+				// view that matches our class type.
+				if (anno instanceof ViewSet)
+				{
+					for (ViewWith viewWith : ((ViewSet) anno).value())
+					{
+						Class<?> forClass = viewWith.ifClass();
+						if (forClass.isAssignableFrom(type))
+						{
+							return viewWith;
+						}
+					}
+				}
 				if (anno instanceof ViewWith)
 				{
 					Class<?> forClass = ((ViewWith) anno).ifClass();
-					// Note that View.class is a sentinel value indicating "all classes"
-					if (ViewWith.class.equals(forClass) || forClass.isAssignableFrom(type))
+					// Note that View.class is a sentinel value indicating
+					// "all classes"
+					if (View.class.equals(forClass) || forClass.isAssignableFrom(type))
 					{
 						return (ViewWith) anno;
 					}
 				}
 			}
 		}
-		
+
 		if (type != null && type.isAnnotationPresent(ViewWith.class))
 		{
 			return (ViewWith) type.getAnnotation(ViewWith.class);
 		}
-		
-		if (genericType != null && genericType instanceof Class && ((Class<?>) genericType).isAnnotationPresent(ViewWith.class))
+
+		if (genericType != null && genericType instanceof Class
+				&& ((Class<?>) genericType).isAnnotationPresent(ViewWith.class))
 		{
 			return (ViewWith) ((Class<?>) genericType).getAnnotation(ViewWith.class);
 		}
-		
+
 		return null;
 	}
-	
+
 }
