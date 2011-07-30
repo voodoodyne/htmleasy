@@ -1,33 +1,46 @@
 #summary Using the ResteasyFilter
 #labels Featured
 
-Resteasy is currently implemented as a servlet.  If you want to serve pages without prefixing all your URLs with some annoying gunk, you need to map the servlet to {{{/*}}}.  If you do this, you won't be able to serve the static content or jsp views in your application - the Resteasy servlet consumes all requests and returns 404 for any that it cannot process.
+To use Htmleasy, your Resteasy configuration needs to be setup using a special filter.  To configure your server simply follow the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/index.html#filter Resteasy filter configuration instructions] replacing the `org.jboss.resteasy.plugins.server.servlet.FilterDispatcher` reference with the Htmleasy equivalent:
 
-There is some discussion on the resteasy-developer mailing list that may change this by converting Resteasy to a filter.  Until that materializes, we provide you with a ResteasyFilter that does more-or-less the same thing.  Put this in your web.xml:
+   {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
+
+Your web.xml file may look like:
 
 {{{
-<filter>
-	<filter-name>ResteasyFilter</filter-name>
-	<filter-class>com.googlecode.htmleasy.ResteasyFilter</filter-class>
-</filter>
-	
-<filter-mapping>
-	<filter-name>ResteasyFilter</filter-name>
-	<url-pattern>/*</url-pattern>
-	<dispatcher>REQUEST</dispatcher>
-	<dispatcher>FORWARD</dispatcher>
-	<dispatcher>INCLUDE</dispatcher>
-</filter-mapping>
+<web-app>
+    <filter>
+        <filter-name>Htmleasy</filter-name>
+        <filter-class>
+            com.googlecode.htmleasy.HtmleasyFilterDispatcher
+        </filter-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.restfully.MyHtmleasyApp</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Htmleasy</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+</web-app>
+
 }}}
 
-Do *NOT* enable the Resteasy HttpServletDispatcher - the ResteasyFilter will create one internally for you.  Any config parameters passed to the ResteasyFilter are automatically handed to the HttpServletDispatcher.  Note that you should still configure the Resteasy bootstrap context-listener.
+If you are not using class scanning to load your annotated Rest JAX-RS classes and instead are registering them in your `javax.ws.rs.Application` instance, don't forget to ensure the Htmleasy `@Provider` classes are returned.  Your `getClasses` implementation may look like this.
 
-All other Resteasy configuration (context-params, etc) are processed normally.
+ {{{
+   public Set<Class<?>> getClasses() {
+      Set<Class<?>> myResources = new HashSet<Class<?>>();
+      myResources.add(myOtherRestStuff.class);
+      
+      myResources.addAll(HtmleasyProviders.getClasses());
+      
+      return myResources;
+   }
+}}}
+ 
 
-The filter works the following way:
-
- # When a request arrives, attempt to dispatch to the Resteasy servlet.
- # If the Resteasy servlet responds with anything but 404, we're done.
- # If the Resteasy servlet response with 404, continue processing down the filter chain.
-
-Note that the ResteasyFilter *MUST* be the last filter specified; the filter chain will stop processing when the request is processed successfully by the Resteasy servlet.
+_(Explanation current as of Resteasy 2.2.1) _
