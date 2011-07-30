@@ -14,8 +14,20 @@
 
 *What features are planned for the future?*
 
+ * Maybe: View resolver based on Path (i.e. convention over configuration)
+
   _TODO_
 
 *If I use Htmleasy are I putting all my eggs in one basket?*
 
   _TODO_
+
+*Can I use (Guice|Spring|Hibernate|Mongo|JSR299|CoolThingThisMonth) with Htmleasy?
+
+  _TODO_
+
+*I've heard that Htmleasy is now part of Resteasy?
+
+  _TODO_
+
+ 
