@@ -186,9 +186,8 @@ public class BoatController
 
 == Safe Paths ==
 
-Controller paths (i.e. routes) are defined by class and method annotations. Htmleasy supports refactor/type safe path references at all MVC layers.  Rather than using a static string to reference a controller path, your code can reference the controller class or class/method.
+Controller paths (i.e. routes) are defined by class and method annotations. Htmleasy supports refactor/type safe path references at all MVC layers.  Rather than using a static String to reference a controller path, your code can reference the controller class or class/method directly using `Path.to()`.  
 
- 
 
 {{{
 // home.jsp
@@ -197,6 +196,8 @@ Controller paths (i.e. routes) are defined by class and method annotations. Html
   <li><a href="<%= Path.to(BoatController.class, "findMoorings") %>Find a mooring</a></li>
 </ul>
 }}}
+
+The `RedirectException` may also be constructed with class or class/method references (as well as static Strings or URIs).
 
 {{{
 @Path("/boat")
