@@ -169,7 +169,7 @@ Note that you can add one or more @ViewWith annotations with an ifClass Attribut
 
 {{{
 @Path("/boat")
-public class BoatResource
+public class BoatController
 {
 	@GET @Path("/{id}")
         @ViewSet({
@@ -177,12 +177,43 @@ public class BoatResource
             @ViewWith(ifClass=SailingBoat.class, value="/sailing_boat.jsp"),
             @ViewWith(ifClass=Dinghy.class, value="/dinghy.jsp")
          })
-	public Boat getVehicle(@PathParam("id") Long id)
+	public Boat getBoat(@PathParam("id") Long id)
 	{
 		return // ...load from database; could be PowerBoat, SailingBoat, or Dinghy.
 	}
 }
 }}}
+
+== Safe Paths ==
+
+Controller paths (i.e. routes) are defined by class and method annotations. Htmleasy supports refactor/type safe path references at all MVC layers.  Rather than using a static string to reference a controller path, your code can reference the controller class or class/method.
+
+ 
+
+{{{
+// home.jsp
+<ul>
+  <li><a href="<%= Path.to(BoatController.class) %>">All boats</a></li>
+  <li><a href="<%= Path.to(BoatController.class, "findMoorings") %>Find a mooring</a></li>
+</ul>
+}}}
+
+{{{
+@Path("/boat")
+public class BoatController
+{
+	@POST
+	public void newBoat(@Form Boat boat)
+	{
+                if (boat.getType() != BoatType.SAIL)
+                {
+                     throw new RedirectException(InvalidAccessController.class);
+                }
+		// ...
+	}
+}
+}}}
+
 
 == Form Handling ==
 
