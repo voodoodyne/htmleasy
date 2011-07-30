@@ -123,11 +123,11 @@ public class CarResource
 
 Normally JAX-RS can produce JSON, XML, or any of several other formats from the getCar() method. Now in addition, the same method will produce HTML if the client (browser) asks for it.
 
-Note that the name of the model in the request context can be changed using the modelName attribute on the @ViewWith annotation.
+Note that the name of the model in the request context can be changed using the modelName attribute on the `@ViewWith` annotation.
 
 == View Override ==
 
-The @ViewWith annotation on a data class is just a default.	 You can override it on a per-method basis:
+The `@ViewWith` annotation on a data class is just a default. You can override it on a per-method basis:
 
 {{{
 @Path("/car")
@@ -165,7 +165,7 @@ public class VehicleResource
 }
 }}}
 
-Note that you can add one or more @ViewWith annotations with an ifClass Attribute by annotating your method with an `@ViewSet`. This will override the default (or missing) @ViewWith on objects of a particular class or superclass.  Note that the order of annotations is relevant here.
+Note that you can add one or more `@ViewWith` annotations with an `ifClass` Attribute by annotating your method with an `@ViewSet`. This will override the default (or missing) `@ViewWith` on objects of a particular class or superclass.  Note that the order of annotations is relevant here.
 
 {{{
 @Path("/boat")
