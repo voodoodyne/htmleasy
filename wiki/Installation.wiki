@@ -2,9 +2,78 @@
 
 = Htmleasy Installation =
 
-== From Scratch ==
+This page explains how to install and configure Htmleasy.  To quickly get a feel for Htmleasy try downloading the preassembled [HtmleasyPlayground Htmleasy Playground] project (a Google App Engine project).
 
+== From scratch ==
 
+*Step 1:* Set up a standard WAR project hosted inside you're servlet container of choice. (e.g. Jetty, Tomcat, Google App Engine, J2EE Server, etc.)
+
+*Step 2:* Add the appropriate [http://www.jboss.org/resteasy Resteasy] JARs to your classpath. (e.g. place in your WEB-INF/lib directory)
+
+*Step 2:* Add the [http://code.google.com/p/htmleasy/downloads/list htmleasy.jar] to your classpath.
+
+*Step 3:* Edit your `WEB-INF/web.xml` file as follows:
+
+{{{
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+    <filter>
+        <filter-name>Htmleasy</filter-name>
+        <filter-class>
+            com.googlecode.htmleasy.HtmleasyFilterDispatcher
+        </filter-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.myorg.myproject.MyApp</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Htmleasy</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+	<jsp-property-group>
+		<description>Common config for all the JSP</description>
+		<url-pattern>*.jsp</url-pattern>
+		<el-ignored>false</el-ignored>
+	</jsp-property-group>
+	
+</web-app>
+}}}
+
+_Note:_ Change `com.myorg.myproject.MyApp` as appropriate. See next step.
+
+*Step 4:* Create an implementation of `javax.ws.rs.core.Application` as follows:
+
+{{{
+package com.myorg.myproject;
+
+import java.util.HashSet;
+import java.util.Set;
+import javax.ws.rs.core.Application;
+import com.googlecode.htmleasy.HtmleasyProviders;
+
+public class MyApp extends Application {
+
+	 public Set<Class<?>> getClasses() {
+	      Set<Class<?>> myServices = new HashSet<Class<?>>();
+	      
+	      // Add my own JAX-RS annotated classes
+	      myServices.add(TheTime.class);
+	      
+	      // Add Htmleasy Providers
+	      myServices.addAll(HtmleasyProviders.getClasses());
+	      
+	      return myServices;
+	 }
+}
+}}}
 
 
 == For existing projects using Resteasy ==
@@ -32,7 +101,7 @@ public class MyApp extends Application {
 	 public Set<Class<?>> getClasses() {
 	      Set<Class<?>> myServices = new HashSet<Class<?>>();
 	      
-	      // Register my services
+	      // Add my own JAX-RS annotated classes
 	      myServices.add(MyRestStuff.class);
 	      
 	      // Add Htmleasy Providers
@@ -43,6 +112,6 @@ public class MyApp extends Application {
 }
 }}}
 
-If you're using classpath scanning then no action should be required.
+If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
 
 Your exiting Resteasy services will continue to work as normal.
