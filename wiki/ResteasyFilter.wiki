@@ -42,7 +42,9 @@ If you are not using class scanning to load your annotated Rest JAX-RS classes a
    }
 }}}
 
-_*Note:*_ The Htmleasy filter works exactly the same way as the Reaseasy filter. (`Technical:` Unfortunately Resteasy opens the output writter a little early before Htmleasy has had an opportunity to forward the request. This causes problems under some servlet environments.  The Htmleasy filter delays the writter open/create until the first write)
+_*Note:*_ The Htmleasy filter works exactly the same way as the Reaseasy filter. 
+
+(_Technical Explanation:_ Unfortunately Resteasy opens the servlet output writter a little early, before Htmleasy has had an opportunity to forward the request. This causes problems under some servlet environments.  The Htmleasy filter delays the stream's open/create until the first write.)
  
 
 _(Explanation current as of Resteasy 2.2.1) _
