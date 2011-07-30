@@ -93,6 +93,8 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
   to     
     {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
 
+Please see ResteasyFilter if you'd like to know more about why this step is required. 
+
 *Step 3:* Ensure the Htmleasy `@Providers` are registered.
 
 If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
