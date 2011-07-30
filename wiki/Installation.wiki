@@ -6,7 +6,7 @@ This page explains how to install and configure Htmleasy.  To quickly get a feel
 
 == From scratch ==
 
-*Step 1:* Set up a standard WAR project hosted inside you're servlet container of choice. (e.g. Jetty, Tomcat, Google App Engine, J2EE Server, etc.)
+*Step 1:* Set up a standard WAR project hosted inside you're servlet container of choice. (e.g. [http://jetty.codehaus.org/jetty/ Jetty], [http://tomcat.apache.org/ Tomcat], [http://code.google.com/appengine/docs/java/overview.html Google App Engine], J2EE Server, etc.)
 
 *Step 2:* Add the appropriate [http://www.jboss.org/resteasy Resteasy] JARs to your classpath. (e.g. place in your WEB-INF/lib directory)
 
@@ -74,6 +74,8 @@ public class MyApp extends Application {
 	 }
 }
 }}}
+
+See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/index.html#javax.ws.rs.core.Application Resteasy documentation] for more information.
 
 
 == For existing projects using Resteasy ==
