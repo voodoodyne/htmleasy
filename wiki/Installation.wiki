@@ -97,7 +97,7 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
 
 If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
 
-If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are added to your `getClasses()` set. For example:
+If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are added to your `getClasses()` set. There is a convenience method `HtmleasyProviders.getClasses()` to help here. For example:
 
 {{{
 public class MyApp extends Application {
