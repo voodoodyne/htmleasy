@@ -9,9 +9,9 @@
 
 == For existing projects using Resteasy ==
 
-*Step 1)* Add the `htmleasy.jar` to your classpath
+*Step 1:* Add the `htmleasy.jar` to your classpath
 
-*Step 2)* Change your *web.xml* file as follows:
+*Step 2:* Change your *web.xml* file as follows:
   * If you have configured Resteasy as a *filter*, change
     {{{org.jboss.resteasy.plugins.server.servlet.FilterDispatcher}}}
   to 
@@ -22,7 +22,7 @@
   to     
     {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
 
-*Step 3)* Ensure the Htmleasy `@Providers` are registered.
+*Step 3:* Ensure the Htmleasy `@Providers` are registered.
 
 If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are set as follows:
 
