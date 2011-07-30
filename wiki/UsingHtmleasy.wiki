@@ -34,7 +34,7 @@ public class About
 
 == View With Model ==
 
-Static html isn't very interesting, even if you do get clean URLs with Resteasy.  You can add a model to a view for rendering:
+Static html isn't very interesting, even if you do get clean URLs with JAX-RS.  You can add a model to a view for rendering:
 
 {{{
 @Path("/time")
@@ -65,7 +65,7 @@ public class About
 }
 }}}
 
-Htmleasy will work with any view technology available under your servlet context. Views can access the model data via the servlet HTTP request attributes under a key name of '"model"' (changeable default).
+Htmleasy will work with any view technology available under your servlet context. Views can access the model data via the servlet HTTP request attributes under a key name of '"model"' (changeable default). Options could include [http://freemarker.sourceforge.net/ Freemaker], [http://velocity.apache.org/ Velocity], or even [http://code.google.com/closure/templates/ Google Closure Templates] or [http://www.stringtemplate.org/ String Templates] if wrapped in a bit of servlet code.
 
 == Custom Viewable ==
 
