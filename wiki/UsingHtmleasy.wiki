@@ -123,7 +123,7 @@ public class CarResource
 
 Normally JAX-RS can produce JSON, XML, or any of several other formats from the getCar() method. Now in addition, the same method will produce HTML if the client (browser) asks for it.
 
-Note that the name of the model in the request context can be changed using the modelName attribute on the `@ViewWith` annotation.
+Note that the name of the model in the request context can be changed using the `modelName` attribute on the `@ViewWith` annotation.
 
 == View Override ==
 
