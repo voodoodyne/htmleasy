@@ -1,0 +1,48 @@
+#summary Htmleasy Installation/Setup
+
+= Htmleasy Installation =
+
+== From Scratch ==
+
+
+
+
+== For existing projects using Resteasy ==
+
+*Step 1)* Add the `htmleasy.jar` to your classpath
+
+*Step 2)* Change your *web.xml* file as follows:
+  * If you have configured Resteasy as a *filter*, change
+    {{{org.jboss.resteasy.plugins.server.servlet.FilterDispatcher}}}
+  to 
+    {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
+
+  * If you have configured Resteasy as a *servlet*, change
+    {{{org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher}}}
+  to     
+    {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
+
+*Step 3)* Ensure the Htmleasy `@Providers` are registered.
+
+If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are set as follows:
+
+{{{
+public class MyApp extends Application {
+
+	 public Set<Class<?>> getClasses() {
+	      Set<Class<?>> myServices = new HashSet<Class<?>>();
+	      
+	      // Register my services
+	      myServices.add(MyRestStuff.class);
+	      
+	      // Add Htmleasy Providers
+	      myServices.addAll(HtmleasyProviders.getClasses());
+	      
+	      return myServices;
+	 }
+}
+}}}
+
+If you're using classpath scanning then no action should be required.
+
+Your exiting Resteasy services will continue to work as normal.
