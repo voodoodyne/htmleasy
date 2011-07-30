@@ -165,7 +165,24 @@ public class VehicleResource
 }
 }}}
 
-Note that you can add one or more @ViewWith annotations with an ifClass Attribute. This will override the default (or missing) @ViewWith on objects of a particular class or superclass.  Note that the order of annotations is relevant here.
+Note that you can add one or more @ViewWith annotations with an ifClass Attribute by annotating your method with an `@ViewSet`. This will override the default (or missing) @ViewWith on objects of a particular class or superclass.  Note that the order of annotations is relevant here.
+
+{{{
+@Path("/boat")
+public class BoatResource
+{
+	@GET @Path("/{id}")
+        @ViewSet({
+            @ViewWith(ifClass=PowerBoat.class, value="/power_boat.jsp"),
+            @ViewWith(ifClass=SailingBoat.class, value="/sailing_boat.jsp"),
+            @ViewWith(ifClass=Dinghy.class, value="/dinghy.jsp")
+         })
+	public Boat getVehicle(@PathParam("id") Long id)
+	{
+		return // ...load from database; could be PowerBoat, SailingBoat, or Dinghy.
+	}
+}
+}}}
 
 == Form Handling ==
 
