@@ -95,7 +95,9 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
 
 *Step 3:* Ensure the Htmleasy `@Providers` are registered.
 
-If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are set as follows:
+If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
+
+If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are added to your `getClasses()` set. For example:
 
 {{{
 public class MyApp extends Application {
@@ -114,6 +116,6 @@ public class MyApp extends Application {
 }
 }}}
 
-If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
+
 
 Your exiting Resteasy services will continue to work as normal.
