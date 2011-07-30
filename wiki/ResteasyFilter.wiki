@@ -1,50 +1,12 @@
 #summary Using the ResteasyFilter
 #labels Featured
 
-To use Htmleasy, your Resteasy configuration needs to be setup using a special filter.  To configure your server simply follow the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/index.html#filter Resteasy filter configuration instructions] replacing the `org.jboss.resteasy.plugins.server.servlet.FilterDispatcher` reference with the Htmleasy equivalent:
+To use Htmleasy, your Resteasy configuration needs to be setup using a special filter or servlet.  Due to technical reasons it's not possible to use the default Resteasy filter/servlet.  To configure your server simply follow the [Installation installation instructions].  
 
-   {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
+The Htmleasy dispatch filter/servlet works exactly the same way as the default Reaseasy filter/servlet.  You may continue to use all standard Resteasy [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html/Installation_Configuration.html#d0e72 configuration switches]. 
 
-Your *web.xml* file may look like:
-
-{{{
-<web-app>
-    <filter>
-        <filter-name>Htmleasy</filter-name>
-        <filter-class>
-            com.googlecode.htmleasy.HtmleasyFilterDispatcher
-        </filter-class>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.restfully.MyHtmleasyApp</param-value>
-        </init-param>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>Htmleasy</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-</web-app>
-
-}}}
-
-If you are not using class scanning to load your annotated Rest JAX-RS classes and instead are registering them in your `javax.ws.rs.Application` instance, don't forget to ensure the Htmleasy `@Provider` classes are returned in the list.  There is a convenience method `HtmleasyProviders.getClasses()` to help here.  Your `getClasses` implementation may look like this.
-
- {{{
-   public Set<Class<?>> getClasses() {
-      Set<Class<?>> myResources = new HashSet<Class<?>>();
-      myResources.add(myOtherRestStuff.class);
-      
-      myResources.addAll(HtmleasyProviders.getClasses());
-      
-      return myResources;
-   }
-}}}
-
-_*Note:*_ The Htmleasy filter works exactly the same way as the Reaseasy filter. 
-
-(_Technical Explanation:_ Unfortunately Resteasy opens the servlet output writter a little early, before Htmleasy has had an opportunity to forward the request. This causes problems under some servlet environments.  The Htmleasy filter delays the stream's open/create until the first write.)
+==Technical Explanation:==
+Unfortunately Resteasy opens the servlet output writter a little early, before Htmleasy has had an opportunity to forward the request. This causes problems under some servlet environments.  The Htmleasy filter delays the stream's open/create until the first write.
  
 
 _(Explanation current as of Resteasy 2.2.1) _
