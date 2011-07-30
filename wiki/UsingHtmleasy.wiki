@@ -1,11 +1,16 @@
 #summary How to use Htmleasy
 #labels Featured
 
+= Getting Started =
+To quickly get a feel for Htmleasy try downloading the preassembled [PlaygroundProject Htmleasy Playground] project (a Google App Engine project). _(TODO/Pending)_
+
 = Installation =
 
-Just include the htmleasy jar in your web application.	Resteasy will find the providers automatically.
+Please read the [Installation installation notes] to find out how to add Htmleasy to your project or existing Resyeasy configuration.  Setup is relatively simple as Htmleasy is a simple Resteasy plugin.
 
-If you would like to serve HTML pages from the root context (ie /myresource as opposed to /rest/myresource), use the optional included ResteasyFilter.
+= Prerequisites =
+
+Readers will find knowledge of JAX-RS and/or [http://www.jboss.org/resteasy Resyeasy] helpful.
 
 = Patterns =
 
@@ -44,6 +49,23 @@ public class About
 }}}
 
 The date object will be placed in the request attributes with the key name {{{model}}}.  You can customize the name in the View constructor, if you choose.
+
+== Alternate View System ==
+Htmleasy does not mandate a template/view technology. JSP is not a requirement. You are free to use your template technology of choice.
+
+{{{
+@Path("/time")
+public class About
+{
+	@GET @Path("/now")
+	public View whatTimeIsIt()
+	{
+		return new View("/calendar.ftl", new Date());
+	}
+}
+}}}
+
+Htmleasy will work with any view technology available under your servlet context. Views can access the model data via the servlet HTTP request attributes under a key name of '"model"' (changeable default).
 
 == Custom Viewable ==
 
