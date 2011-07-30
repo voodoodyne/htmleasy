@@ -29,7 +29,7 @@ Your web.xml file may look like:
 
 }}}
 
-If you are not using class scanning to load your annotated Rest JAX-RS classes and instead are registering them in your `javax.ws.rs.Application` instance, don't forget to ensure the Htmleasy `@Provider` classes are returned.  Your `getClasses` implementation may look like this.
+If you are not using class scanning to load your annotated Rest JAX-RS classes and instead are registering them in your `javax.ws.rs.Application` instance, don't forget to ensure the Htmleasy `@Provider` classes are returned in the list.  There is a convenience method `HtmleasyProviders.getClasses()` to help here.  Your `getClasses` implementation may look like this.
 
  {{{
    public Set<Class<?>> getClasses() {
