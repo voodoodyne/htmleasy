@@ -1,0 +1,21 @@
+#summary Frequently Asked Questions
+
+*When should I use Htmleasy over XYZ framework?*
+
+  _TODO_
+
+*It seems to be missing the basics. How do I say add a paginated table of results?*
+
+  _TODO_
+
+*What is the different between Htmleasy and Spring MVC?*
+
+  _TODO_
+
+*What features are planned for the future?*
+
+  _TODO_
+
+*If I use Htmleasy are I putting all my eggs in one basket?*
+
+  _TODO_
