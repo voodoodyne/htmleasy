@@ -2,6 +2,11 @@
 
 = Htmleasy Installation =
 
+*On this page:*
+ * [WikiSyntax#From_scratch Setup from scratch]
+ * Setup in an existing Resteasy project
+ * Setup in a dependency injection environment
+
 This page explains how to install and configure Htmleasy.  To quickly get a feel for Htmleasy try downloading the preassembled [HtmleasyPlayground Htmleasy Playground] project (a Google App Engine project).
 
 == From scratch ==
@@ -93,13 +98,13 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
   to     
     {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
 
-Please see ResteasyFilter if you'd like to know more about why this step is required. 
+Please see ResteasyFilter if you'd like to know more about why this step is required.  
 
 *Step 3:* Ensure the Htmleasy `@Providers` are registered.
 
 If you're using classpath scanning then no action should be required.  Resteasy will detect the Htmleasy providers.
 
-If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are added to your `getClasses()` set. There is a convenience method `HtmleasyProviders.getClasses()` to help here. For example:
+Classpath scanning can cause slow startup times on larger projects. If you're registering your classes via `javax.ws.rs.Application` ensure the Htmleasy providers are added to your `getClasses()` set. There is a convenience method `HtmleasyProviders.getClasses()` to help here. For example:
 
 {{{
 public class MyApp extends Application {
@@ -118,6 +123,35 @@ public class MyApp extends Application {
 }
 }}}
 
+If your JAX-RS annotated classes are registered via a Dependency Injection environment such as Guice, Spring, or CDI, see below.
 
+== For existing projects using Resteasy with DI (e.g. Guice) ==
 
-Your exiting Resteasy services will continue to work as normal.
+In addition to your JAX-RS annotated classes, make sure the following Htmleasy classes are under management:
+
+{{{
+    com.googlecode.htmleasy.provider.ViewWriter
+    com.googlecode.htmleasy.provider.RedirectExceptionMapper
+    com.googlecode.htmleasy.provider.ViewExceptionMapper
+}}}
+
+For example, if you're using [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html/Guice1.html Resteasy's Guice 2.0 Integration] your module may look like this:
+
+{{{
+import com.google.inject.Module;
+import com.google.inject.Binder;
+
+public class MyModule implements Module
+{
+    public void configure(final Binder binder)
+    {
+       // Ensure Htmleasy Provider classes are found
+       binder.bind(com.googlecode.htmleasy.provider.ViewWriter.class);
+       binder.bind(com.googlecode.htmleasy.provider.RedirectExceptionMapper.class);
+       binder.bind(com.googlecode.htmleasy.provider.ViewExceptionMapper.class);
+
+       // My classes here
+       binder.bind(MyAnnotatedClass.class);
+    }
+}
+}}}
