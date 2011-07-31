@@ -1,5 +1,4 @@
 #summary Using the ResteasyFilter
-#labels Featured
 
 To use Htmleasy, your Resteasy configuration needs to be setup using a special filter or servlet.  Due to technical reasons it's not possible to use the default Resteasy filter/servlet.  To configure your server simply follow the [Installation installation instructions].  
 
