@@ -4,8 +4,8 @@
 
 *On this page:*
  * [#From_scratch Setup from scratch]
- * Setup in an existing Resteasy project
- * Setup in a dependency injection environment
+ * [#For_existing_projects_using_Resteasy Setup in an existing Resteasy project]
+ * [#For_existing_projects_using_Resteasy_with_DI]Setup in a dependency injection environment]
 
 This page explains how to install and configure Htmleasy.  To quickly get a feel for Htmleasy try downloading the preassembled [HtmleasyPlayground Htmleasy Playground] project (a Google App Engine project).
 
@@ -125,7 +125,7 @@ public class MyApp extends Application {
 
 If your JAX-RS annotated classes are registered via a Dependency Injection environment such as Guice, Spring, or CDI, see below.
 
-== For existing projects using Resteasy with DI (e.g. Guice) ==
+== For existing projects using Resteasy with DI ==
 
 In addition to your JAX-RS annotated classes, make sure the following Htmleasy classes are under management:
 
