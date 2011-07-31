@@ -6,7 +6,7 @@ Most of the popular Java web frameworks such as [http://wicket.apache.org/ Wicke
 
 Htmleasy is a perfect server-side framework for projects leveraging the growing number of client-side Javascript options such as JQuery and its ecosystem, Backbone.js, Sproutcore, etc. REST is natural, HTML is native, and it doesn't carry much server-side baggage.
 
-If you've come from a world like Rails, Django, or MVC3, then you'll feel much more at home with Htmleasy than a heavy Java web framework. 
+If you've come from a world like Rails, Sinatra, Django, or MVC3, then you'll feel much more at home with Htmleasy than a heavy Java web framework. 
 
 *It seems to be missing the basics. How do I say add a paginated table of results, or validate a form with field-level feedback?*
 
