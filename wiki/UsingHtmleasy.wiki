@@ -361,3 +361,8 @@ public class CarSubmitResource
 	}
 }
 }}}
+
+= More =
+
+ * [FAQ Frequently Asked Questions]
+ * [Installation Installation/setup instructions]
