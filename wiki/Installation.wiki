@@ -1,4 +1,5 @@
 #summary Htmleasy Installation/Setup
+#labels Featured
 
 = Htmleasy Installation =
 
