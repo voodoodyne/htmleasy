@@ -229,7 +229,7 @@ public class UserSignup {
 		return new View("signup_form.jsp");
 	}
 	
-        /** The signup_form will call this via AJAX to offer as-you-type feedback */ 
+        /** The signup form will call this via AJAX to offer as-you-type feedback */ 
 	@Path("/check_username")
 	@Produces("application/json")
 	@POST
@@ -247,7 +247,7 @@ public class UserSignup {
 		return null;
 	}
 
-        // ... post form handlers, other validates, etc.
+        // ... post form handlers, other validates, etc. all logically grouped here.
 
 }
 }}} 
