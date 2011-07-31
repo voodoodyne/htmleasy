@@ -362,6 +362,10 @@ public class CarSubmitResource
 }
 }}}
 
+== Request/Response Context, Cookies, Authentication and more... ==
+
+Pop over to [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/index.html Resteasy] and see all the options.
+
 = More =
 
  * [FAQ Frequently Asked Questions]
