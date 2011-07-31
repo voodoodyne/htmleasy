@@ -216,6 +216,38 @@ public class BoatController
 }
 }}}
 
+== AJAX alongside rather than "offside"  ==
+In modern Web 2.0 applications each page often has a number of supporting server-side AJAX/JSON calls.  For example an user signup form may have AJAX support to check username availability as they type. Htmleasy allows you to place these supporting functions right alongside your view controllers.
+
+{{{
+@Path("/signup")
+public class UserSignup {
+	
+	@GET
+	public View showSignupForm()
+        {
+		return new View("signup_form.jsp");
+	}
+	
+	@Path("/check_username")
+	@Produces("application/json")
+	@POST
+	public ImmutableMap<String, ? extends Object> validateUsername(
+                         @FormParam("username") String username) 
+        {
+		if ("fred".equals(username)) 
+                {	
+			return ImmutableMap.of(
+					"valid", false,
+					"msg", "This username is already taken"
+					);	
+		}
+		
+		return null;
+	}
+
+}
+}}} 
 
 == Form Handling ==
 
