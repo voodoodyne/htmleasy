@@ -208,7 +208,7 @@ public class BoatController
 	{
                 if (boat.getType() != BoatType.SAIL)
                 {
-                     // Nice than RedirectionException("/security/information/invalid_access")!
+                     // Nicer than RedirectionException("/security/information/invalid_access")!
                      throw new RedirectException(InvalidAccessController.class);
                 }
 		// ...
