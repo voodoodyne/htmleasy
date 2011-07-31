@@ -230,9 +230,8 @@ public class UserSignup {
 	}
 	
         /** The signup form will call this via AJAX to offer as-you-type feedback */ 
-	@Path("/check_username")
+	@POST @Path("/check_username")
 	@Produces("application/json")
-	@POST
 	public ImmutableMap<String, ? extends Object> validateUsername(
                               @FormParam("username") String username) 
         {
@@ -248,7 +247,6 @@ public class UserSignup {
 	}
 
         // ... post form handlers, other validates, etc. all logically grouped here.
-
 }
 }}} 
 
