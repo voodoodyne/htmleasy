@@ -250,6 +250,8 @@ public class UserSignup {
 }
 }}} 
 
+Also notice how testable these methods are. After all they are just Java methods with some pretty annotations!
+
 == Form Handling ==
 
 In modern Web 2.0 applications, traditional form handling is slowly being replaced with smart javascript forms.	 Nevertheless, Htmleasy provides several options for managing the page flow of form submission.
