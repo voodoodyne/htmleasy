@@ -1,4 +1,5 @@
 #summary Frequently Asked Questions
+#labels Featured
 
 *When should I use Htmleasy over XYZ framework?*
 
