@@ -6,6 +6,8 @@ Most of the popular Java web frameworks such as [http://wicket.apache.org/ Wicke
 
 Htmleasy is a perfect server-side framework for projects leveraging the growing number of client-side Javascript options such as JQuery and its ecosystem, Backbone.js, Sproutcore, etc. REST is natural, HTML is native, and it doesn't carry much server-side baggage.
 
+If you've come from a world like Rails, Django, or MVC3, then you'll feel much more at home with Htmleasy than a heavy Java web framework. 
+
 *It seems to be missing the basics. How do I say add a paginated table of results, or validate a form with field-level feedback?*
 
 That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... A SmartClient table... JQuery form validation... etc.
@@ -16,14 +18,16 @@ Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to def
 
 *What features are planned for the future?*
 
-Not a lot because the goal of Htmleasy is to remain very simple an elegant.  If you have any ideas that fit within this ethos, please make them know on the discussion forum.  A few being considered at the moment include.
+Not a lot because the goal of Htmleasy is to remain very simple and elegant.  If you have any ideas that fit within this ethos please make them know on the discussion forum.  A few currently under consideration include.
 
  * Maven/Ivy POM.
  * Maybe views could be resolver automatically based on path annotations (i.e. convention over configuration).
 
-*If I use Htmleasy are I putting all my eggs in one basket?*
+*If I use Htmleasy am I putting all my eggs in one basket?*
 
 This is an important consideration when selecting any framework. Fortunately 95% of what Htmleasy provides is Resteasy - a popular standards compliant JAX-RS implementation developed and supported by the JBoss team.  Htmleasy is simply a thin shim over Resteasy to facilitate elegant HTML rendering.  It's very light and in fact a developer could read and understand all the code in 30 minutes. You're not coupling your code with a heavy weight framework. 
+
+Htmleasy, like JAX-RS is also often used alongside other frameworks.  This is possible because it's lightweight and does not impose other aspects onto your code such as DI environments, session requirements, etc.
 
 *Can I use (Guice|Spring|Hibernate|Mongo|JSR299|Cool-thing-of-the-month) with Htmleasy?
 
