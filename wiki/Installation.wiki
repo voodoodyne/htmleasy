@@ -3,7 +3,7 @@
 = Htmleasy Installation =
 
 *On this page:*
- * [WikiSyntax#From_scratch Setup from scratch]
+ * [#From_scratch Setup from scratch]
  * Setup in an existing Resteasy project
  * Setup in a dependency injection environment
 
