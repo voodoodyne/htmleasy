@@ -229,18 +229,18 @@ public class UserSignup {
 		return new View("signup_form.jsp");
 	}
 	
-        /** The signup_form will call this via AJAX to offer as-they-type feedback */ 
+        /** The signup_form will call this via AJAX to offer as-you-type feedback */ 
 	@Path("/check_username")
 	@Produces("application/json")
 	@POST
 	public ImmutableMap<String, ? extends Object> validateUsername(
                               @FormParam("username") String username) 
         {
-		if ("fred".equals(username)) 
+		if (username.startsWith("admin")) 
                 {	
 			return ImmutableMap.of(
 					"valid", false,
-					"msg", "This username is already taken"
+					"msg", "Sorry. This username is already taken."
 					);	
 		}
 		
