@@ -25,16 +25,18 @@ Not a lot because the goal of Htmleasy is to remain very simple and elegant.  If
 
 *If I use Htmleasy am I putting all my eggs in one basket?*
 
-This is an important consideration when selecting any framework. Fortunately 95% of what Htmleasy provides is Resteasy - a popular standards compliant JAX-RS implementation developed and supported by the JBoss team.  Htmleasy is simply a thin shim over Resteasy to facilitate elegant HTML rendering.  It's very light and in fact a developer could read and understand all the code in 30 minutes. You're not coupling your code with a heavy weight framework. 
+This is an important consideration when selecting any framework. Fortunately 95% of what Htmleasy provides is Resteasy - a popular standards compliant JAX-RS implementation developed and supported by the JBoss team.  Htmleasy is simply a thin shim over Resteasy to facilitate elegant HTML view-model.  It's very light and in fact a developer could read and understand all the code in 30 minutes. You're not coupling your code with a heavy weight framework. 
 
-Htmleasy, like JAX-RS is also often used alongside other frameworks.  This is possible because it's lightweight and does not impose other aspects onto your code such as DI environments, session requirements, etc.
+Htmleasy, like JAX-RS is also often used alongside other frameworks.  This is possible because it's lightweight and does not impose other aspects onto your code such as a DI environment, session requirements, etc.
 
 *Can I use (Guice|Spring|Hibernate|Mongo|JSR299|Cool-thing-of-the-month) with Htmleasy?
 
 Yes. Htmleasy simply focuses on REST and MVC so you're free to use what ever you like in other areas your code.  
 
-*I've heard that Htmleasy is now part of Resteasy?
+*I've heard that Htmleasy is now part of Resteasy?*
 
 [http://resteasy.svn.sourceforge.net/viewvc/resteasy/trunk/jaxrs/providers/resteasy-html/src/main/java/org/jboss/resteasy/plugins/providers/html/ The View part of Htmleasy] can now be seen in the Resteasy codebase (plugin providers).  This is great news.  We would love to see all pattens and concepts in Htmleasy become part of Resteasy as they prove to be useful and mature within this project.
 
- 
+*What dependencies does Htmleasy have?*
+
+The only dependancy is Resteasy itself. 
