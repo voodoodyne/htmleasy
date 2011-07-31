@@ -10,7 +10,7 @@ If you've come from a world like Rails, Django, or MVC3, then you'll feel much m
 
 *It seems to be missing the basics. How do I say add a paginated table of results, or validate a form with field-level feedback?*
 
-That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... A SmartClient table... JQuery form validation... etc.
+That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... A Smart Client table... JQuery form validation... etc.
 
 *What is the different between Htmleasy and Spring MVC?*
 
