@@ -8,11 +8,11 @@ Htmleasy is a perfect server-side framework for projects leveraging the growing 
 
 *It seems to be missing the basics. How do I say add a paginated table of results, or validate a form with field-level feedback?*
 
-That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate. AJAX scrolling, JQuery form validation, etc.
+That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... JQuery form validation... etc.
 
 *What is the different between Htmleasy and Spring MVC?*
 
-Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to define paths and map methods to requests. This allows you to leverage the same REST API across all areas of your applications whether it be JSON REST or plain HTML requests.  Spring of course provides a lot more services out of the box.
+Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to define paths and map methods to requests. This allows you to leverage the same REST API across all areas of your application whether it be JSON REST or plain HTML requests or pages.  Spring of course provides a lot more services out of the box.
 
 *What features are planned for the future?*
 
@@ -23,14 +23,14 @@ Not a lot because the goal of Htmleasy is to remain very simple an elegant.  If 
 
 *If I use Htmleasy are I putting all my eggs in one basket?*
 
-  _TODO_
+This is an important consideration when selecting any framework. Fortunately 95% of what Htmleasy provides is Resteasy - a popular standards compliant JAX-RS implementation developed and supported by the JBoss team.  Htmleasy is simply a thin shim over Resteasy to facilitate elegant HTML rendering.  It's very light and in fact a developer could read and understand all the code in 30 minutes. You're not coupling your code with a heavy weight framework. 
 
-*Can I use (Guice|Spring|Hibernate|Mongo|JSR299|CoolThingThisMonth) with Htmleasy?
+*Can I use (Guice|Spring|Hibernate|Mongo|JSR299|Cool-thing-of-the-month) with Htmleasy?
 
-  _TODO_
+Yes. Htmleasy simply focuses on REST and MVC so you're free to use what ever you like in other areas your code.  
 
 *I've heard that Htmleasy is now part of Resteasy?
 
-  _TODO_
+[http://resteasy.svn.sourceforge.net/viewvc/resteasy/trunk/jaxrs/providers/resteasy-html/src/main/java/org/jboss/resteasy/plugins/providers/html/ The View part of Htmleasy] can now be seen in the Resteasy codebase (plugin providers).  This is great news.  We would love to see all pattens and concepts in Htmleasy become part of Resteasy as they prove to be useful and mature within this project.
 
  
