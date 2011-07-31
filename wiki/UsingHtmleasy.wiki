@@ -229,11 +229,12 @@ public class UserSignup {
 		return new View("signup_form.jsp");
 	}
 	
+        /** The signup_form will call this via AJAX to offer as-they-type feedback */ 
 	@Path("/check_username")
 	@Produces("application/json")
 	@POST
 	public ImmutableMap<String, ? extends Object> validateUsername(
-                         @FormParam("username") String username) 
+                              @FormParam("username") String username) 
         {
 		if ("fred".equals(username)) 
                 {	
@@ -245,6 +246,8 @@ public class UserSignup {
 		
 		return null;
 	}
+
+        // ... post form handlers, other validates, etc.
 
 }
 }}} 
