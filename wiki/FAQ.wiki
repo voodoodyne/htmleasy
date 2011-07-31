@@ -2,13 +2,13 @@
 
 *When should I use Htmleasy over XYZ framework?*
 
-Most of the popular Java web frameworks such as Wicket, Tapestry, JSF have a long pedigree and have grown up in a Web 1.0 world. They work hard to abstract away aspects of the HTTP request/response model and manage all manner of state automatically.  Htmleasy is a step closer to the HTTP world.  The focus is on REST - HTML verbs, clean URLs and AJAX/JSON. Htmleasy is very light on the server-side and this makes it ideal for Web 2.0 projects where more of the heavy lifting will be done via AJAX on the client-side.  
+Most of the popular Java web frameworks such as [http://wicket.apache.org/ Wicket], [http://tapestry.apache.org/ Tapestry], JSF have a long pedigree and have grown up in a Web 1.0 world. They work hard to abstract away aspects of the HTTP request/response model and manage all manner of state automatically.  Htmleasy is a step closer to the HTTP world.  The focus is on REST - HTML verbs, clean URLs and AJAX/JSON. Htmleasy is very light on the server-side and this makes it ideal for Web 2.0 projects where more of the heavy lifting will be done via AJAX on the client-side.  
 
-Htmleasy is a perfect server-side framework for projects leveraging the growing number of client-side Javascript options such as JQuery and it’s plugin ecosystem, Backbone.js, Sproutcore, etc. REST is natural, HTML is native, and it doesn't carry much server-side baggage.
+Htmleasy is a perfect server-side framework for projects leveraging the growing number of client-side Javascript options such as JQuery and its ecosystem, Backbone.js, Sproutcore, etc. REST is natural, HTML is native, and it doesn't carry much server-side baggage.
 
 *It seems to be missing the basics. How do I say add a paginated table of results, or validate a form with field-level feedback?*
 
-That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... JQuery form validation... etc.
+That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... A SmartClient table... JQuery form validation... etc.
 
 *What is the different between Htmleasy and Spring MVC?*
 
