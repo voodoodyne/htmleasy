@@ -30,7 +30,7 @@ import com.googlecode.htmleasy.provider.ViewWriter;
 public class HtmleasyProviders
 {
 
-    /** Private cosntructor on utility class */
+    /** Private constructor on utility class */
     private HtmleasyProviders() {}
 
     /**
