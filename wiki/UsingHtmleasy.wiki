@@ -160,7 +160,7 @@ public class VehicleResource
 	@ViewWith(ifClass=Boat.class, value="/boat_special.jsp")
 	public Vehicle getVehicle(@PathParam("id") Long id)
 	{
-		return // ...load from database; could be Car, Boat, Airplane, etc
+		return // ...load from database; could be Car, Boat, Airplane, etc. (subclasses of Vehicle)
 	}
 }
 }}}
