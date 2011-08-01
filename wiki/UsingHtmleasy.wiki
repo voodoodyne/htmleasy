@@ -194,6 +194,7 @@ Controller paths (i.e. routes) are defined by class and method annotations. Html
 <ul>
   <li><a href="<%= Path.to(BoatController.class) %>">All boats</a></li>
   <li><a href="<%= Path.to(BoatController.class, "findMoorings") %>">Find a mooring</a></li>
+  <li><a href="/">Home</a></li>
 </ul>
 }}}
 
