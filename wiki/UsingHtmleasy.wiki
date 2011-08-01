@@ -222,7 +222,7 @@ In modern Web 2.0 applications each page often has a number of supporting server
 
 {{{
 @Path("/signup")
-public class UserSignup {
+public class SignupController {
 	
 	@GET
 	public View showSignupForm()
