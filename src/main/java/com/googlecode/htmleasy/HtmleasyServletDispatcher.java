@@ -44,8 +44,9 @@ import org.jboss.resteasy.spi.HttpResponse;
  * @author Chris Dance <chris.dance@papercut.com> 
  */
 public class HtmleasyServletDispatcher extends HttpServletDispatcher {
+	private static final long serialVersionUID = 1L;
 
-    @Override
+	@Override
     protected HttpResponse createServletResponse(HttpServletResponse response) {
         return new HttpServletResponseWrapper(response, getDispatcher()
                 .getProviderFactory()) {
