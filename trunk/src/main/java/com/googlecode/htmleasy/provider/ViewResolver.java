@@ -61,7 +61,7 @@ public class ViewResolver
 			if (viewWith == null)
 				return null;
 			
-			viewingPleasure = new View(viewWith.value(), object, viewWith.modelName());
+			viewingPleasure = this.createView(viewWith.value(), object, viewWith.modelName());
 		}
 		return viewingPleasure;
 	}
@@ -115,4 +115,13 @@ public class ViewResolver
 		return null;
 	}
 
+	/**
+	 * You can override this method to change the view implementation to something
+	 * completely different - for example, you could directly instantiate a template
+	 * object and render it without going through the servlet dispatch stack again.
+	 */
+	protected Viewable createView(String path, Object model, String modelName)
+	{
+		return new View(path, model, modelName);
+	}
 }
