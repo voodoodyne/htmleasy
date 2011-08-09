@@ -1,0 +1,40 @@
+#summary Guide to using maven with htmleasy
+
+= Introduction =
+
+You can add the htmleasy maven repository to your projects'  POM file to make starting and maintaining your project a little easier.
+
+
+=== Maven repository details  ===
+In addition to the central maven repository, you'll need to add the following repository.
+{{{
+    <repository>
+      <id>htmleasy</id>
+      <url>http://htmleasy-maven.googlecode.com/svn/trunk/</url>
+   </repository>
+}}}
+
+=== Library artifacts ===
+Add the core htmleasy library with:
+*Core library*
+{{{
+    <dependency>
+      <groupId>com.googlecode.htmleasy</groupId>
+      <artifactId>htmleasy</artifactId>
+      <version>0.7</version>
+   </dependency>
+}}}
+
+Get guice integration with:
+{{{
+   <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-guice</artifactId>
+      <version>2.2.1.GA</version>
+   </dependency>
+   <dependency>
+      <groupId>net.sf.scannotation</groupId>
+      <artifactId>scannotation</artifactId>
+      <version>1.0.2</version>
+   </dependency>
+}}}
