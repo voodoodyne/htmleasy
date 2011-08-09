@@ -24,7 +24,7 @@ Add the core htmleasy library with:
    </dependency>
 }}}
 
-Get guice integration with:
+You may choose to add extra dependencies to your project (e.g. extra Resteasy modules for JSON, DI support, etc.).  For example to setup Guice integration, add dependencies to your Maven file like:
 {{{
    <dependency>
       <groupId>org.jboss.resteasy</groupId>
@@ -37,3 +37,7 @@ Get guice integration with:
       <version>1.0.2</version>
    </dependency>
 }}}
+
+You'll find more plugin/add-on/dependeny options over in the Resteasy  [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html/Maven_and_RESTEasy.html documentation on Maven]
+
+The Maven repository is maintained in a separate source code repository to the core Htmleasy code, and is maintained by project members and kept in sync with releases.
