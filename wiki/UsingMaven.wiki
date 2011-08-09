@@ -16,7 +16,6 @@ In addition to the central maven repository, you'll need to add the following re
 
 === Library artifacts ===
 Add the core htmleasy library with:
-*Core library*
 {{{
     <dependency>
       <groupId>com.googlecode.htmleasy</groupId>
