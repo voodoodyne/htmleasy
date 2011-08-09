@@ -25,7 +25,7 @@ Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to def
 
 Not a lot because the goal of Htmleasy is to remain very simple and elegant.  If you have any ideas that fit within this ethos please make them know on the discussion forum.  A few currently under consideration include.
 
- * Maven/Ivy POM.
+ * Maven/Ivy POM <font color="green">done</font>
  * Maybe views could be resolver automatically based on path annotations (i.e. convention over configuration).
 
 *If I use Htmleasy am I putting all my eggs in one basket?*
@@ -38,10 +38,14 @@ Htmleasy, like JAX-RS is also often used alongside other frameworks.  This is po
 
 Yes. Htmleasy simply focuses on REST and MVC so you're free to use what ever you like in other areas your code.  
 
-*I've heard that Htmleasy is now part of Resteasy?*
+I've heard that Htmleasy is now part of Resteasy?*
 
 [http://resteasy.svn.sourceforge.net/viewvc/resteasy/trunk/jaxrs/providers/resteasy-html/src/main/java/org/jboss/resteasy/plugins/providers/html/ The View part of Htmleasy] can now be seen in the Resteasy codebase (plugin providers).  This is great news.  We would love to see all pattens and concepts in Htmleasy become part of Resteasy as they prove to be useful and mature within this project.
 
 *What dependencies does Htmleasy have?*
 
 The only dependancy is Resteasy itself. 
+
+*Is there a maven repository for the project?*
+
+Yes! You can read about it here: UsingMaven
