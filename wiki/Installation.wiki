@@ -4,6 +4,7 @@
 = Htmleasy Installation =
 
 *On this page:*
+
  * [#From_scratch Setup from scratch]
  * [#For_existing_projects_using_Resteasy Setup in an existing Resteasy project]
  * [#For_existing_projects_using_Resteasy_with_DI Setup in a dependency injection environment]
@@ -148,10 +149,10 @@ public class MyModule implements Module
     public void configure(final Binder binder)
     {
        // Ensure Htmleasy Provider classes are found
-       binder.bind(com.googlecode.htmleasy.provider.ViewWriter.class);
-       binder.bind(com.googlecode.htmleasy.provider.RedirectExceptionMapper.class);
-       binder.bind(com.googlecode.htmleasy.provider.ViewExceptionMapper.class);
-
+       for (Class<?> c : HtmleasyProviders.getClasses()) {
+           binder.bind(c);
+       }
+      
        // My classes here
        binder.bind(MyAnnotatedClass.class);
     }
