@@ -5,10 +5,10 @@
 
 *On this page:*
 
- * [#From_scratch Setup from scratch]
- * [#For_existing_projects_using_Resteasy Setup in an existing Resteasy project]
- * [#For_existing_projects_using_Resteasy_with_DI Setup in a dependency injection environment]
- * [#Using_Maven Setup using Maven/Ivy]
+  # [#From_scratch Setup from scratch]
+  # [#For_existing_projects_using_Resteasy Setup in an existing Resteasy project]
+  # [#For_existing_projects_using_Resteasy_with_DI Setup in a dependency injection environment]
+  # [#Using_Maven Setup using Maven/Ivy]
 
 This page explains how to install and configure Htmleasy.  To quickly get a feel for Htmleasy try downloading the preassembled [HtmleasyPlayground Htmleasy Playground] project (a Google App Engine project).
 
@@ -91,15 +91,10 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
 *Step 1:* Add the `htmleasy.jar` to your classpath
 
 *Step 2:* Change your *web.xml* file as follows:
-  * If you have configured Resteasy as a *filter*, change
-    {{{org.jboss.resteasy.plugins.server.servlet.FilterDispatcher}}}
-  to 
-    {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
 
-  * If you have configured Resteasy as a *servlet*, change
-    {{{org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher}}}
-  to     
-    {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
+  * If you have configured Resteasy as a {{{filter}}}, change {{{org.jboss.resteasy.plugins.server.servlet.FilterDispatcher}}} to {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
+
+  * If you have configured Resteasy as a *servlet*, change {{{org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher}}} to     {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
 
 Please see ResteasyFilter if you'd like to know more about why this step is required.  
 
