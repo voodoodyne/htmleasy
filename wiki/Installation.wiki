@@ -94,7 +94,7 @@ See the [http://docs.jboss.org/resteasy/docs/2.2.1.GA/userguide/html_single/inde
 
   * If you have configured Resteasy as a {{{filter}}}, change {{{org.jboss.resteasy.plugins.server.servlet.FilterDispatcher}}} to {{{com.googlecode.htmleasy.HtmleasyFilterDispatcher}}}
 
-  * If you have configured Resteasy as a *servlet*, change {{{org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher}}} to     {{{com.googlecode.htmleasy.HttpeasyServletDispatcher}}}
+  * If you have configured Resteasy as a *servlet*, change {{{org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher}}} to     {{{com.googlecode.htmleasy.HtmleasyServletDispatcher}}}
 
 Please see ResteasyFilter if you'd like to know more about why this step is required.  
 
