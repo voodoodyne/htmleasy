@@ -65,7 +65,7 @@ public class About
 }
 }}}
 
-Htmleasy will work with any view technology available under your servlet context. Views can access the model data via the servlet HTTP request attributes under a key name of '"model"' (changeable default). Options could include [http://freemarker.sourceforge.net/ Freemaker], [http://velocity.apache.org/ Velocity], or even [http://code.google.com/closure/templates/ Google Closure Templates] or [http://www.stringtemplate.org/ String Templates] if wrapped in a bit of servlet code.
+Htmleasy will work with any view technology available under your servlet context. Views can access the model data via the servlet HTTP request attributes under a key name of '"model"' (changeable default). Some options, such as [https://github.com/codedance/silken Silken] (Google Closure Templates) has been specifically developed for Htmleasy. Other options could include [http://freemarker.sourceforge.net/ Freemaker], [http://velocity.apache.org/ Velocity], or [http://www.stringtemplate.org/ String Templates] if wrapped in a bit of servlet code.
 
 == Custom Viewable ==
 
