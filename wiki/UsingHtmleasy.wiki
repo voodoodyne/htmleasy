@@ -60,7 +60,9 @@ public class About
 	@GET @Path("/now")
 	public View whatTimeIsIt()
 	{
-		return new View("/soy/com.myorg.pages.time", new Date());
+                String now = SimpleDateFormat.getDateTimeInstance().format(new Date());
+                // Render using Silken (Google Closure Templates)
+		return new View("/soy/com.myorg.pages.time", ImmutableMap.of("time", now));
 	}
 }
 }}}
