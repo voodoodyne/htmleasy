@@ -52,3 +52,11 @@ The only dependancy is Resteasy itself.
 ===Is there a maven repository for the project?===
 
 Yes! You can read about it here: UsingMaven
+
+===What view/template technologies are recommended?===
+
+JSP is a strong option as it's "always there". [https://github.com/codedance/silken Silken] (Google Closure Templates) is another good option as it's built specifically to work well with Htmleasy.
+
+JSP has a bad rep and this is mainly a result of abuse of it's power!  If you restrict yourself to using JPS as a simple template system in Htmleasy's push-MVC style, then it's hard to shoot yourself.  ie.  don't put logic in your page that calls out to other code. Use only the data based in on the model.
+
+The fact that Htmleasy is decoupled from view systems is one of it's strengths.
