@@ -59,4 +59,4 @@ JSP is a strong option as it's "always there". [https://github.com/codedance/sil
 
 JSP has a bad rep and this is mainly a result of abuse of it's power!  If you restrict yourself to using JPS as a simple template system in Htmleasy's push-MVC style, then it's hard to shoot yourself.  ie.  don't put logic in your page that calls out to other code. Use only the data based in on the model.
 
-The fact that Htmleasy is decoupled from view systems is one of it's strengths.
+The fact that Htmleasy is decoupled from view systems is one of its strengths.
