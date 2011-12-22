@@ -18,7 +18,7 @@ If you've come from a world like Rails, Sinatra, Django, or MVC3, then you'll fe
 
 That's correct. Isn't it great! You're now free to do it in the way you feel is most appropriate; AJAX scrolling... A Smart Client table... JQuery form validation... etc.
 
-===What is the different between Htmleasy and Spring MVC?===
+===What is the difference between Htmleasy and Spring MVC?===
 
 Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to define paths and map methods to requests. This allows you to leverage the same REST API across all areas of your application whether it be JSON REST or plain HTML requests or pages.  Spring of course provides a lot more services out of the box.
 
