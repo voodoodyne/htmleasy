@@ -255,6 +255,8 @@ public class SignupController {
 
 Also notice how testable these methods are. After all they are just Java methods with some pretty annotations!
 
+(Example above will work if you've added [http://docs.jboss.org/resteasy/docs/2.3.1.GA/userguide/html/json.html RestEasy's Jackson support].)
+
 == Form Handling ==
 
 In modern Web 2.0 applications, traditional form handling is slowly being replaced with smart javascript forms.	 Nevertheless, Htmleasy provides several options for managing the page flow of form submission.
