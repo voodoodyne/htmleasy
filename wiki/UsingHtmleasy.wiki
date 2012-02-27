@@ -2,7 +2,7 @@
 #labels Featured
 
 = Getting Started =
-To quickly get a feel for Htmleasy try downloading the preassembled *Htmleasy Playground* project (a Google App Engine project). _(TODO/Pending)_
+To quickly get a feel for Htmleasy try downloading the preassembled *[http://htmleasy.googlecode.com/files/HtmleasyPlayground-2012-02-27.zip Htmleasy Playground]* project (a Google App Engine project).
 
 = Installation =
 
