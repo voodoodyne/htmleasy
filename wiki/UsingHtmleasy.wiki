@@ -2,6 +2,7 @@
 #labels Featured
 
 = Getting Started =
+<a href="http://htmleasy.googlecode.com/files/HtmleasyPlayground-2012-02-27.zip"><img src="https://github.com/codedance/HtmleasyPlayground/raw/master/screenshot.png" style="float:right;" /></a>
 To quickly get a feel for Htmleasy try downloading the preassembled *[http://htmleasy.googlecode.com/files/HtmleasyPlayground-2012-02-27.zip Htmleasy Playground]* project (a Google App Engine project).
 
 = Installation =
