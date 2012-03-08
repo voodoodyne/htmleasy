@@ -28,10 +28,10 @@ Both are push MVC environments. Htmleasy uses standard JAX-RS annotations to def
 
 Not a lot because the goal of Htmleasy is to remain very simple and elegant.  If you have any ideas that fit within this ethos please make them know on the discussion forum.  A few currently under consideration include.
 
- * An example "Playground" project (Google App Engine) demonstrating core pattens/usage. 
- * Maven/Ivy POM <font color="green">DONE</font>
- * Plugins and use-pattens for popular Template languages.
- * Maybe views could be resolver automatically based on path annotations (i.e. convention over configuration).
+ * ~~An example "Playground" project (Google App Engine) demonstrating core pattens/usage.~~ 
+ * ~~Maven/Ivy POM~~
+ * Plugins and use-pattens for popular Template languages. (DONE [https://github.com/codedance/silken Soy Templates - Silken])
+ * Maybe views could be resolver automatically based on path annotations or class names (i.e. convention over configuration).
 
 ===If I use Htmleasy am I putting all my eggs in one basket?===
 
