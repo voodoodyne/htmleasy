@@ -33,7 +33,7 @@ Not a lot because the goal of Htmleasy is to remain very simple and elegant.  If
  * Plugins and use-pattens for popular Template languages. (DONE [https://github.com/codedance/silken Soy Templates - Silken])
  * Maybe views could be resolver automatically based on path annotations or class names (i.e. convention over configuration).
 
-===If I use Htmleasy am I putting all my eggs in one basket?===
+===If I use Htmleasy, am I putting all my eggs in one basket?===
 
 This is an important consideration when selecting any framework. Fortunately 95% of what Htmleasy provides is Resteasy - a popular standards compliant JAX-RS implementation developed and supported by the JBoss team.  Htmleasy is simply a thin shim over Resteasy to facilitate elegant HTML view-model.  It's very light and in fact a developer could read and understand all the code in 30 minutes. You're not coupling your code with a heavy weight framework. 
 
