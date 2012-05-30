@@ -4,6 +4,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.ejb.ApplicationException;
+import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
 
 /**
@@ -19,19 +20,41 @@ import javax.ws.rs.core.UriBuilder;
 public class RedirectException extends RuntimeException
 {
 	protected URI path;
+	protected Status status;	// 301, 302, 303
 
+	/**
+	 * Default status is SEE_OTHER (303) 
+	 */
 	public RedirectException(URI path)
+	{
+		this(Status.SEE_OTHER, path);
+	}
+	
+	/**
+	 * @param status must be SEE_OTHER or MOVED_PERMANENTLY
+	 */
+	public RedirectException(Status status, URI path)
 	{
 		super(path.toString());
 		
 		this.path = path;
+		this.status = status;
 	}
 
 	/**
-	 * @param path
-	 *            must be a valid URI
+	 * Default status is SEE_OTHER (303) 
+	 * @param path must be a valid URI
 	 */
 	public RedirectException(String path)
+	{
+		this(Status.SEE_OTHER, path);
+	}
+	
+	/**
+	 * @param status must be SEE_OTHER or MOVED_PERMANENTLY
+	 * @param path must be a valid URI
+	 */
+	public RedirectException(Status status, String path)
 	{
 		super(path);
 		
@@ -43,13 +66,24 @@ public class RedirectException extends RuntimeException
 		{
 			throw new RuntimeException(ex);
 		}
+		
+		this.status = status;
 	}
 
 	/**
-	 * @param clazz
-	 *            An Path annotated class to redirect too.
+	 * Default status is SEE_OTHER (303) 
+	 * @param clazz A Path annotated class to redirect too.
 	 */
 	public RedirectException(Class<?> clazz)
+	{
+		this(Status.SEE_OTHER, clazz);
+	}
+	
+	/**
+	 * @param status must be SEE_OTHER or MOVED_PERMANENTLY
+	 * @param clazz A Path annotated class to redirect too.
+	 */
+	public RedirectException(Status status, Class<?> clazz)
 	{
 		super(clazz.getName());
 
@@ -61,15 +95,26 @@ public class RedirectException extends RuntimeException
 		{
 			throw new RuntimeException(ex);
 		}
+		
+		this.status = status;
 	}
 
 	/**
-	 * @param clazz
-	 *            An Path annotated class.
-	 * @param method
-	 *            The Path annotated method to redirect too.
+	 * Default status is SEE_OTHER (303) 
+	 * @param clazz A Path annotated class.
+	 * @param method The Path annotated method to redirect too.
 	 */
 	public RedirectException(Class<?> clazz, String method)
+	{
+		this(Status.SEE_OTHER, method);
+	}
+	
+	/**
+	 * @param status must be SEE_OTHER or MOVED_PERMANENTLY
+	 * @param clazz A Path annotated class.
+	 * @param method The Path annotated method to redirect too.
+	 */
+	public RedirectException(Status status, Class<?> clazz, String method)
 	{
 		super(clazz.getName());
 
@@ -81,10 +126,17 @@ public class RedirectException extends RuntimeException
 		{
 			throw new RuntimeException(ex);
 		}
+		
+		this.status = status;
 	}
 
 	public URI getPath()
 	{
 		return this.path;
+	}
+	
+	public Status getStatus()
+	{
+		return this.status;
 	}
 }
