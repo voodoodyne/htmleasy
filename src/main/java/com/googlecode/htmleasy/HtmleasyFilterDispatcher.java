@@ -34,8 +34,7 @@ public class HtmleasyFilterDispatcher extends FilterDispatcher {
 
    @Override
    public HttpResponse createResteasyHttpResponse(HttpServletResponse response) {
-       return new HttpServletResponseWrapper(response, getDispatcher()
-               .getProviderFactory()) {
+       return new HttpServletResponseWrapper(response, getDispatcher().getProviderFactory()) {
 
            protected OutputStream getSuperOuptutStream() throws IOException {
                return super.getOutputStream();
@@ -68,9 +67,10 @@ public class HtmleasyFilterDispatcher extends FilterDispatcher {
                    public void close() throws IOException {
                        getSuperOuptutStream().close();
                    }
-
                };
            }
+           
+           
        };
    }
 
