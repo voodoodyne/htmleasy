@@ -25,7 +25,7 @@ public class RedirectExceptionMapper implements ExceptionMapper<RedirectExceptio
 	//@Override
 	public Response toResponse(RedirectException ex)
 	{
-		return Response.status(ex.getStatus()).contentLocation(ex.getPath()).build();
+		return Response.status(ex.getStatus()).location(ex.getPath()).build();
 	}
 
 }
